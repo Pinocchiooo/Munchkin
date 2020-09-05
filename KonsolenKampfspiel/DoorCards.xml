@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Carts>
+  <Monster>
+    <Name>Grosses Wütendes Huhn</Name>
+    <Level>2</Level>
+    <Treasure>1</Treasure>
+    <Increasment>1</Increasment>
+  </Monster>
+  <Monster>
+    <Name>Kreischender Depp</Name>
+    <Level>6</Level>
+    <Treasure>2</Treasure>
+    <Increasment>1</Increasment>
+  </Monster>
+  <Monster>
+    <Name>3.872 Orks</Name>
+    <Level>10</Level>
+    <Treasure>3</Treasure>
+    <Increasment>1</Increasment>
+  </Monster>
+  <Monster>
+    <Name>Gallert Oktaeder</Name>
+    <Level>2</Level>
+    <Treasure>1</Treasure>
+    <Increasment>1</Increasment>
+  </Monster>
+  <Monster>
+    <Name>Blechkauz</Name>
+    <Level>6</Level>
+    <Treasure>2</Treasure>
+    <Increasment>1</Increasment>
+  </Monster>
+  <Monster>
+    <Name>Unglaublicher Unaussprechlischer Schrecken</Name>
+    <Level>14</Level>
+    <Treasure>4</Treasure>
+    <Increasment>1</Increasment>
+  </Monster>
+  <Monster>
+    <Name>Schnecken auf Speed</Name>
+    <Level>4</Level>
+    <Treasure>2</Treasure>
+    <Increasment>1</Increasment>
+  </Monster>
+  <Monster>
+    <Name>Hahn Solo</Name>
+    <Level>10</Level>
+    <Treasure>3</Treasure>
+    <Increasment>1</Increasment>
+  </Monster>
+  <Monster>
+    <Name>PlutoniumDrache</Name>
+    <Level>20</Level>
+    <Treasure>5</Treasure>
+    <Increasment>2</Increasment>
+  </Monster>
+  <Monster>
+    <Name>Monster unter dem Bett</Name>
+    <Level>2</Level>
+    <Treasure>1</Treasure>
+    <Increasment>1</Increasment>
+  </Monster>
+  <Monster>
+    <Name>SalatGolem</Name>
+    <Level>8</Level>
+    <Treasure>2</Treasure>
+    <Increasment>1</Increasment>
+  </Monster>
+  <Monster>
+    <Name>Die Ex des Spielleiters</Name>
+    <Level>4</Level>
+    <Treasure>2</Treasure>
+    <Increasment>1</Increasment>
+  </Monster>
+  <Monster>
+    <Name>Topfpflanze</Name>
+    <Level>1</Level>
+    <Treasure>1</Treasure>
+    <Increasment>1</Increasment>
+  </Monster>
+  <Monster>
+    <Name>Bekiffter Golem</Name>
+    <Level>14</Level>
+    <Treasure>4</Treasure>
+    <Increasment>1</Increasment>
+  </Monster>
+  <Monster>
+    <Name>Zyklop</Name>
+    <Level>19</Level>
+    <Treasure>5</Treasure>
+    <Increasment>2</Increasment>
+  </Monster>
+  <Monster>
+    <Name>Versicherungsvertreter</Name>
+    <Level>14</Level>
+    <Treasure>4</Treasure>
+    <Increasment>1</Increasment>
+  </Monster>
+</Carts>

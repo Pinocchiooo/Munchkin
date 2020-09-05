@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cards>
+  <Equipment>
+    <Suit>
+      <Name>Sexy Lederrüstung</Name>
+      <Boni>1</Boni>
+    </Suit>
+    <Suit>
+      <Name>Flammende Rüstung</Name>
+      <Boni>2</Boni>
+    </Suit>
+    <Suit>
+      <Name>Elasthan Kettenhemd</Name>
+      <Boni>3</Boni>
+    </Suit>
+    <Suit>
+      <Name>Schleimige Rüstung</Name>
+      <Boni>1</Boni>
+    </Suit>
+    <Suit>
+      <Name>PappTellerRüstung</Name>
+      <Boni>1</Boni>
+    </Suit>
+    
+  </Equipment>
+</cards>
