@@ -6,7 +6,7 @@ namespace KonsolenKampfspiel
 {
     class Gameplay
     {
-        public Gameplay(Player player, List<TreasureCards> treasureCards, List<DoorCards> doorcards)
+        public Gameplay(Player player, List<Cards> treasureCards, List<Cards> doorcards)
         {
             this.player = player;
             this.treasureCards = treasureCards;
@@ -19,8 +19,8 @@ namespace KonsolenKampfspiel
         }
 
         Player player;
-        List<TreasureCards> treasureCards;
-        List<DoorCards> doorcards;
+        List<Cards> treasureCards;
+        List<Cards> doorcards;
         List<Cards> handCards;
         
         void takeTreasureCard(int number)
@@ -50,12 +50,12 @@ namespace KonsolenKampfspiel
         {
             for (int i = 1; i <= handCards.Count; i++)
             {
-                if (handCards[i].DoorCards != null) {
-                    Console.WriteLine(handCards[i].DoorCards.ToString());
+                if (handCards[i] != null) {
+                    Console.WriteLine(handCards[i].ToString());
                 }
-                if (handCards[i].TreasureCards != null)
+                if (handCards[i] != null)
                 {
-                    Console.WriteLine(handCards[i].TreasureCards.ToString());
+                    Console.WriteLine(handCards[i].ToString());
                 }
             }
         }

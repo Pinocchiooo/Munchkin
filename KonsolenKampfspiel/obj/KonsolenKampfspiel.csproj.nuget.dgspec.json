@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\AdrianaBrunster\\OneDrive - Georg-Simon-Ohm Berufskolleg\\FIA95\\visualStudioProjects\\KonsolenKampfspiel\\KonsolenKampfspiel.csproj": {}
+    "C:\\Users\\AdrianaBrunster\\Documents\\GitHub\\Munchkin\\KonsolenKampfspiel\\KonsolenKampfspiel.csproj": {}
   },
   "projects": {
-    "C:\\Users\\AdrianaBrunster\\OneDrive - Georg-Simon-Ohm Berufskolleg\\FIA95\\visualStudioProjects\\KonsolenKampfspiel\\KonsolenKampfspiel.csproj": {
+    "C:\\Users\\AdrianaBrunster\\Documents\\GitHub\\Munchkin\\KonsolenKampfspiel\\KonsolenKampfspiel.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\AdrianaBrunster\\OneDrive - Georg-Simon-Ohm Berufskolleg\\FIA95\\visualStudioProjects\\KonsolenKampfspiel\\KonsolenKampfspiel.csproj",
+        "projectUniqueName": "C:\\Users\\AdrianaBrunster\\Documents\\GitHub\\Munchkin\\KonsolenKampfspiel\\KonsolenKampfspiel.csproj",
         "projectName": "KonsolenKampfspiel",
-        "projectPath": "C:\\Users\\AdrianaBrunster\\OneDrive - Georg-Simon-Ohm Berufskolleg\\FIA95\\visualStudioProjects\\KonsolenKampfspiel\\KonsolenKampfspiel.csproj",
+        "projectPath": "C:\\Users\\AdrianaBrunster\\Documents\\GitHub\\Munchkin\\KonsolenKampfspiel\\KonsolenKampfspiel.csproj",
         "packagesPath": "C:\\Users\\AdrianaBrunster\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\AdrianaBrunster\\OneDrive - Georg-Simon-Ohm Berufskolleg\\FIA95\\visualStudioProjects\\KonsolenKampfspiel\\obj\\",
+        "outputPath": "C:\\Users\\AdrianaBrunster\\Documents\\GitHub\\Munchkin\\KonsolenKampfspiel\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\AdrianaBrunster\\AppData\\Roaming\\NuGet\\NuGet.Config",

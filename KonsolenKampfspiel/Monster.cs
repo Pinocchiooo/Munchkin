@@ -4,7 +4,7 @@ using System.Text;
 
 namespace KonsolenKampfspiel
 {
-    public class Monster
+    public class Monster: Cards
     {
         string name;
         int level;
@@ -18,6 +18,7 @@ namespace KonsolenKampfspiel
             this.treasure = treasure;
             this.increasment = increasment;
         }
+
 
         public bool battle(int strength, Potion[] potion = null)
         {

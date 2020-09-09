@@ -9,3 +9,14 @@ C:\Users\AdrianaBrunster\OneDrive - Georg-Simon-Ohm Berufskolleg\FIA95\visualStu
 C:\Users\AdrianaBrunster\OneDrive - Georg-Simon-Ohm Berufskolleg\FIA95\visualStudioProjects\KonsolenKampfspiel\bin\Debug\netcoreapp3.1\KonsolenKampfspiel.pdb
 C:\Users\AdrianaBrunster\OneDrive - Georg-Simon-Ohm Berufskolleg\FIA95\visualStudioProjects\KonsolenKampfspiel\obj\Debug\netcoreapp3.1\KonsolenKampfspiel.dll
 C:\Users\AdrianaBrunster\OneDrive - Georg-Simon-Ohm Berufskolleg\FIA95\visualStudioProjects\KonsolenKampfspiel\obj\Debug\netcoreapp3.1\KonsolenKampfspiel.pdb
+C:\Users\AdrianaBrunster\Documents\GitHub\Munchkin\KonsolenKampfspiel\bin\Debug\netcoreapp3.1\KonsolenKampfspiel.exe
+C:\Users\AdrianaBrunster\Documents\GitHub\Munchkin\KonsolenKampfspiel\bin\Debug\netcoreapp3.1\KonsolenKampfspiel.deps.json
+C:\Users\AdrianaBrunster\Documents\GitHub\Munchkin\KonsolenKampfspiel\bin\Debug\netcoreapp3.1\KonsolenKampfspiel.runtimeconfig.json
+C:\Users\AdrianaBrunster\Documents\GitHub\Munchkin\KonsolenKampfspiel\bin\Debug\netcoreapp3.1\KonsolenKampfspiel.runtimeconfig.dev.json
+C:\Users\AdrianaBrunster\Documents\GitHub\Munchkin\KonsolenKampfspiel\bin\Debug\netcoreapp3.1\KonsolenKampfspiel.dll
+C:\Users\AdrianaBrunster\Documents\GitHub\Munchkin\KonsolenKampfspiel\bin\Debug\netcoreapp3.1\KonsolenKampfspiel.pdb
+C:\Users\AdrianaBrunster\Documents\GitHub\Munchkin\KonsolenKampfspiel\obj\Debug\netcoreapp3.1\KonsolenKampfspiel.csprojAssemblyReference.cache
+C:\Users\AdrianaBrunster\Documents\GitHub\Munchkin\KonsolenKampfspiel\obj\Debug\netcoreapp3.1\KonsolenKampfspiel.AssemblyInfoInputs.cache
+C:\Users\AdrianaBrunster\Documents\GitHub\Munchkin\KonsolenKampfspiel\obj\Debug\netcoreapp3.1\KonsolenKampfspiel.AssemblyInfo.cs
+C:\Users\AdrianaBrunster\Documents\GitHub\Munchkin\KonsolenKampfspiel\obj\Debug\netcoreapp3.1\KonsolenKampfspiel.dll
+C:\Users\AdrianaBrunster\Documents\GitHub\Munchkin\KonsolenKampfspiel\obj\Debug\netcoreapp3.1\KonsolenKampfspiel.pdb
