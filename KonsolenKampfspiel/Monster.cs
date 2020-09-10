@@ -4,7 +4,7 @@ using System.Text;
 
 namespace KonsolenKampfspiel
 {
-    public class Monster: Cards
+    public class Monster: Card
     {
         string name;
         int level;
@@ -17,6 +17,14 @@ namespace KonsolenKampfspiel
             this.level = level;
             this.treasure = treasure;
             this.increasment = increasment;
+        }
+
+        public void ShowMonster()
+        {
+            Console.WriteLine("Name: " + name);
+            Console.WriteLine("Treasure: " + treasure);
+            Console.WriteLine("Level: " + level);
+            Console.WriteLine("Increasement: " + increasment);
         }
 
 
