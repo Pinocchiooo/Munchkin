@@ -21,8 +21,10 @@ namespace KonsolenKampfspiel
         {
             Console.WriteLine("Willkommen Knirps,\nEs sind viele Monster unterwegs. Stelle dich der Herausforderung und erlange als ertster die 10. Stufe indem sie besiegst.");
             Console.WriteLine("Um dir deine Handkarten anzusehen drücke einfach \"k\" [k]");
+            Console.WriteLine("Eine Rüstungskarte anwenden/ auswechseln [r]");
             Console.WriteLine("Wenn du nicht mehr weißt, wie steuern kannst, lass dir gerne helfen [h]");
-   
+
+
             Console.WriteLine("\nWie ist dein Name?");
             String name = Console.ReadLine();
             Console.WriteLine("Bitte wähle außerdem dein Geschlecht. [w/m]");

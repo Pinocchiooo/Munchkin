@@ -21,35 +21,56 @@ namespace KonsolenKampfspiel
                 {
                     switch (reader.Name)
                     {
-                        case "Name":
+                        case "Monster":
+                        {
                             if (reader.Read())
                             {
-                                monsterName = reader.Value;
-                            }
-                            break;
-                        case "Level":
-                            if (reader.Read())
-                            {
-                                monsterLevel = Convert.ToInt32(reader.Value.Trim());
-                            }
+                                while (reader.Read())
+                                {
+                                    switch (reader.Name)
+                                    {
+                                            case "Name":
+                                                if (reader.Read())
+                                                {
+                                                    monsterName = reader.Value;
+                                                }
+                                                reader.MoveToNextAttribute();
 
-                            break;
-                        case "Treasure":
-                            if (reader.Read())
-                            {
-                                monsterTreasure = Convert.ToInt32(reader.Value.Trim());
+                                                break;
+                                            case "Level":
+                                                if (reader.Read())
+                                                {
+                                                    monsterLevel = Convert.ToInt32(reader.Value.Trim());
+                                                }
+                                                reader.MoveToNextAttribute();
+
+
+                                                break;
+                                            case "Treasure":
+                                                if (reader.Read())
+                                                {
+                                                    monsterTreasure = Convert.ToInt32(reader.Value.Trim());
+                                                }
+                                                break;
+                                            case "Increasment":
+                                                if (reader.Read())
+                                                {
+                                                    monsterIncreasement = Convert.ToInt32(reader.Value.Trim());
+                                                }
+                                                break;
+                                        }
+
+                                    break;
+                                }
                             }
-                            break;
-                        case "Increasment":
-                            if (reader.Read())
-                            {
-                                monsterIncreasement = Convert.ToInt32(reader.Value.Trim());
+                                Card monster = new Monster(monsterName, monsterLevel, monsterTreasure, monsterIncreasement);
+                                cards.Add(monster);
+                                break;
                             }
+                        
 
                             //TODO: programm this clean!
-                            Card monster = new Monster(monsterName, monsterLevel, monsterTreasure, monsterIncreasement);
-                            cards.Add(monster);
-                            break;
+                            
 
                     }
                 }
@@ -94,7 +115,7 @@ namespace KonsolenKampfspiel
                             }
 
                             //TODO: programm this clean!
-                            Card monster = new Equipment(equipmentName,equipmentBoni);
+                            Card monster = new Equipment(equipmentName,equipmentBoni,WearingStyle.body);
                             cards.Add(monster);
                             break;
 

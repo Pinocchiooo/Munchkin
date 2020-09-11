@@ -3,6 +3,28 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <StartupObject></StartupObject>
+    <PackageIcon>kisspng-munchkin-card-game-dungeon-crawl-board-game-the-qwillery-munchkin-coming-to-digital-platforms-5be89d751027b2.8647283515419713170662.png</PackageIcon>
+    <PackageIconUrl />
+    <RepositoryUrl>https://github.com/Pinocchiooo/Munchkin.git</RepositoryUrl>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <ApplicationIcon></ApplicationIcon>
+    <Win32Resource />
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Super-munchkin.png" />
+    <None Include="..\..\..\..\Downloads\kisspng-munchkin-card-game-dungeon-crawl-board-game-the-qwillery-munchkin-coming-to-digital-platforms-5be89d751027b2.8647283515419713170662.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\..\Pictures\Super-munchkin.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>

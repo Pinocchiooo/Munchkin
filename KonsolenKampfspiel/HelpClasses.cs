@@ -26,4 +26,13 @@ namespace KonsolenKampfspiel
         female,
         male
     }
+
+    public enum WearingStyle
+    {
+        head,
+        body,
+        feet,
+        hands,
+        other
+    }
 }

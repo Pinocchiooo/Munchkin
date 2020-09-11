@@ -38,7 +38,14 @@ namespace KonsolenKampfspiel
         Equipment suit;
         Equipment[] others;
 
+        public void showEquipment()
+        {
 
+        }
+        public void useEquipment(Equipment newEquipment)
+        {
+          
+        } 
 
     }
 }
