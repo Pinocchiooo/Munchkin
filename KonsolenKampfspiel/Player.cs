@@ -40,7 +40,70 @@ namespace KonsolenKampfspiel
 
         public void showEquipment()
         {
+            Console.Write("Helm: ");
+            if (headgear != null)
+            {
+                Console.WriteLine();
+                headgear.ShowCard();
+            } else
+            {
+                Console.WriteLine("nur ein Kopf");
+            }
 
+            Console.Write("Schuhwerk: ");
+            if (footwear != null)
+            {
+                Console.WriteLine();
+                footwear.ShowCard();
+            } else
+            {
+                Console.WriteLine("zwei Füße");
+            }
+
+            Console.Write("Rüstung: ");
+            if (suit != null)
+            {
+                Console.WriteLine();
+                suit.ShowCard();
+
+            } else
+            {
+                Console.WriteLine("Bist du etwa nur in Unterhose?");
+            }
+            Console.Write("Hände: ");
+            if (hands != null)
+            {
+                Console.WriteLine();
+                for(int i = 0; i <= hands.Length - 1; i++)
+                {
+                    Console.Write("Hand " + i + ": ");
+                    if (hands[i] != null)
+                    {
+                        hands[i].ShowCard();                    
+                    } else
+                    {
+                        Console.WriteLine("Mit einer leeren Hand lässt sich nicht so leicht kämpfen.");
+                    }
+                }
+            } 
+
+            Console.WriteLine("Weitere: ");
+            if (hands != null)
+            {
+                for (int i = 0; i <= hands.Length - 1; i++)
+                {
+                    int something = 0;
+                    if (hands[i] != null)
+                    {
+                        something++;
+                        hands[i].ShowCard();
+                    } 
+                    if (something == 0)
+                    {
+                        Console.WriteLine("Mehr hast du Wohl nicht");
+                    }
+                }
+            }
         }
         public void useEquipment(Equipment newEquipment)
         {

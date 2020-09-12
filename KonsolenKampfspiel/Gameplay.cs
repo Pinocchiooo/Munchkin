@@ -26,12 +26,15 @@ namespace KonsolenKampfspiel
         
         private void checkingForUserInput()
         {
-            while (1 == 1)
+            while (true)
             {
                 string keyInput = Console.ReadLine();
                 switch (keyInput)
                 {
                     case "h":
+                        Console.WriteLine("Um dir deine Handkarten anzusehen drücke einfach \"k\" [k]");
+                        Console.WriteLine("Eine Rüstungskarte anwenden/ auswechseln [r]");
+                        Console.WriteLine("Wenn du nicht mehr weißt, wie steuern kannst, lass dir gerne helfen [h]");
                         break;
                     case "k":
                         ShowHandCards();
@@ -51,6 +54,7 @@ namespace KonsolenKampfspiel
                             if (newEquipmentCard != null)
                             {
                                 player.useEquipment(newEquipmentCard);
+                                player.showEquipment();
                             }
                             else
                             {
@@ -99,7 +103,7 @@ namespace KonsolenKampfspiel
                 } else if (handCards[i] as Equipment != null)
                 {
                     Equipment equipment = handCards[i] as Equipment;
-                    equipment.ShowEquipment();
+                    equipment.ShowCard();
                 }
                 Console.WriteLine();
             }

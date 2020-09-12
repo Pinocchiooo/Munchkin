@@ -16,7 +16,7 @@ namespace KonsolenKampfspiel
             this.wearingStyle = wearingStyle;
         }
 
-        public void ShowEquipment()
+        public void ShowCard()
         {
             Console.WriteLine("Name: " + name);
             Console.WriteLine("Boni: " + boni);
