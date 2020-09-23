@@ -5,21 +5,32 @@ namespace KonsolenKampfspiel
 {
     public class Equipment: Card
     {
-        string name;
-        int boni;
-        WearingStyle wearingStyle;
-
-        public Equipment(string name, int boni, WearingStyle wearingStyle, int moreHands= 0)
+        public string name { get; }
+        public int boni { get; }
+        //public int hands { get; }
+        public Equipment(string name, int boni)
         {
             this.name = name;
             this.boni = boni;
-            this.wearingStyle = wearingStyle;
         }
 
         public void ShowCard()
         {
             Console.WriteLine("Name: " + name);
             Console.WriteLine("Boni: " + boni);
+        }
+    }
+
+    public class Suit: Equipment
+    {
+        public void Show()
+        {
+            Console.WriteLine("Name: " + name);
+            Console.WriteLine("Boni: " + boni);
+        }
+        public Suit(string name, int boni) : base (name, boni)
+        {
+           
         }
     }
 }

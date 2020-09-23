@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Carts>
+<Cards>
   <Monster>
     <Name>Grosses Wütendes Huhn</Name>
     <Level>2</Level>
@@ -96,4 +96,4 @@
     <Treasure>4</Treasure>
     <Increasment>1</Increasment>
   </Monster>
-</Carts>
+</Cards>

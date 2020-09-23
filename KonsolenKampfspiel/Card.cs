@@ -9,72 +9,51 @@ namespace KonsolenKampfspiel
     {
         static public List<Card> readDoorCards()
         {
-            XmlReader reader = new XmlTextReader("..\\..\\..\\DoorCards.xml");
-            string monsterName = "";
-            int monsterLevel = 0;
-            int monsterTreasure = 0;
-            int monsterIncreasement = 0;
+            XmlDocument doc = new XmlDocument();
+            doc.Load("..\\..\\..\\DoorCards.xml");
+
             List<Card> cards = new List<Card>();
-            while (reader.Read())
+
+            foreach (XmlNode node in doc.DocumentElement)
             {
-                if (reader.NodeType == XmlNodeType.Element)
+                if (node.Name == "Monster")
                 {
-                    switch (reader.Name)
+                    string monsterName = "";
+                    int monsterLevel = 0;
+                    int monsterTreasure = 0;
+                    int monsterIncreasement = 0;
+
+                    foreach (XmlNode child in node.ChildNodes)
                     {
-                        case "Monster":
-                        {
-                            if (reader.Read())
-                            {
-                                while (reader.Read())
-                                {
-                                    switch (reader.Name)
-                                    {
-                                            case "Name":
-                                                if (reader.Read())
-                                                {
-                                                    monsterName = reader.Value;
-                                                }
-                                                reader.MoveToNextAttribute();
-
-                                                break;
-                                            case "Level":
-                                                if (reader.Read())
-                                                {
-                                                    monsterLevel = Convert.ToInt32(reader.Value.Trim());
-                                                }
-                                                reader.MoveToNextAttribute();
-
-
-                                                break;
-                                            case "Treasure":
-                                                if (reader.Read())
-                                                {
-                                                    monsterTreasure = Convert.ToInt32(reader.Value.Trim());
-                                                }
-                                                break;
-                                            case "Increasment":
-                                                if (reader.Read())
-                                                {
-                                                    monsterIncreasement = Convert.ToInt32(reader.Value.Trim());
-                                                }
-                                                break;
-                                        }
-
-                                    break;
-                                }
-                            }
-                                Card monster = new Monster(monsterName, monsterLevel, monsterTreasure, monsterIncreasement);
-                                cards.Add(monster);
+                        switch (child.Name) {
+                            case "Name":
+                                monsterName = child.InnerText;
                                 break;
-                            }
-                        
-
-                            //TODO: programm this clean!
-                            
-
+                            case "Level":
+                                monsterLevel = Convert.ToInt32(child.InnerText);
+                                break;
+                            case "Treasure":
+                                monsterTreasure = Convert.ToInt32(child.InnerText);
+                                break;
+                            case "Increasment":
+                                monsterIncreasement = Convert.ToInt32(child.InnerText);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    if (monsterName != "" && monsterLevel != 0 && monsterTreasure != 0 && monsterIncreasement != 0)
+                    {
+                        Card monster = new Monster(monsterName, monsterLevel, monsterTreasure, monsterIncreasement);
+                        cards.Add(monster);
+                    }
+                    else
+                    {
+                        throw new System.Exception("Die XML Datei konnte nicht ordnungsgemäß eingelesen werden. Bitte überprüfe, ob die XML datei richtige Werte führt.");
                     }
                 }
             }
+
             ////testing Code
             //foreach (Card card in cards)
             //{
@@ -92,42 +71,68 @@ namespace KonsolenKampfspiel
 
         static public List<Card> readTreasureCards()
         {
-            XmlReader reader = new XmlTextReader("..\\..\\..\\TreasureCards.xml");
-            string equipmentName = "";
-            int equipmentBoni = 0;
+            XmlDocument doc = new XmlDocument();
+            doc.Load("..\\..\\..\\TreasureCards.xml");
+
             List<Card> cards = new List<Card>();
-            while (reader.Read())
+
+            foreach (XmlNode node in doc.DocumentElement)
             {
-                if (reader.NodeType == XmlNodeType.Element)
+                if (node.Name == "Equipment")
                 {
-                    switch (reader.Name)
+                    foreach (XmlNode child in node.ChildNodes)
                     {
-                        case "Name":
-                            if (reader.Read())
+                        if (child.Name == "Suit")
+                        {
+                            string suitName = "";
+                            int suitBoni = 0;
+                            foreach (XmlNode grandson in child)
                             {
-                                equipmentName = reader.Value;
+                                switch (grandson.Name)
+                                {       
+                                    case "Name":
+                                        suitName = grandson.InnerText;
+                                        break;
+                                    case "Boni":
+                                        //Console.WriteLine(grandson.)
+                                        suitBoni = Convert.ToInt32(grandson.InnerText);
+                                        break;
+                                    default:
+                                        break;
+                                }
                             }
-                            break;
-                        case "Boni":
-                            if (reader.Read())
+                            if (suitName != "" && suitBoni != 0)
                             {
-                                equipmentBoni = Convert.ToInt32(reader.Value.Trim());
+                                Card suit = new Suit(suitName, suitBoni);
+                                cards.Add(suit);
                             }
-
-                            //TODO: programm this clean!
-                            Card monster = new Equipment(equipmentName,equipmentBoni,WearingStyle.body);
-                            cards.Add(monster);
-                            break;
-
+                            else
+                            {
+                                throw new System.Exception("Die XML Datei konnte nicht ordnungsgemäß eingelesen werden. Bitte überprüfe, ob die XML datei richtige Werte führt.");
+                            }
+                        }   
                     }
                 }
             }
+
+            //testing Code
+            foreach (Card card in cards)
+            {
+                Suit test = card as Suit;
+                if (test != null)
+                {
+                    test.Show();
+                }
+            }
+            Console.WriteLine("Finish!");
+            Console.ReadLine();
             return cards;
         }
 
-        //muss keine Liste zurückgeben, da eine Liste ein Referenztyp ist
+
         static public void Shuffle(List<Card> cards)
-        {
+        {  
+ //muss keine Liste zurückgeben, da eine Liste ein Referenztyp ist
             Random random = new Random();
 
             for (int t = 0; t < cards.Count; t++)

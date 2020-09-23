@@ -107,8 +107,38 @@ namespace KonsolenKampfspiel
         }
         public void useEquipment(Equipment newEquipment)
         {
-          
+            //switch (newEquipment.wearingStyle)
+            //{
+            //    case WearingStyle.head:
+            //        headgear = newEquipment;
+            //        break;
+            //    case WearingStyle.body:
+            //        suit = newEquipment;
+            //        break;
+            //    case WearingStyle.feet:
+            //        footwear = newEquipment;
+            //        break;
+            //    case WearingStyle.hands:
+            //        if (CheckFreeHands() >= newEquipment.hands)
+            //        {
+            //            for (int i = 0; i <= newEquipment.hands; i++)
+            //            {
+
+            //            }
+            //        }
+                    
+            //        break;
+            //}
         } 
+        private int CheckFreeHands()
+        {
+            int freeHands = 0;
+            foreach(Equipment hand in hands)
+            {
+                freeHands++;
+            }
+            return freeHands;
+        }
 
     }
 }

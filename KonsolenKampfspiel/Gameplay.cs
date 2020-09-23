@@ -29,6 +29,7 @@ namespace KonsolenKampfspiel
             while (true)
             {
                 string keyInput = Console.ReadLine();
+                Console.Clear();
                 switch (keyInput)
                 {
                     case "h":
