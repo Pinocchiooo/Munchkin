@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ConsoleTables;
 
 namespace KonsolenKampfspiel
 {
@@ -14,20 +15,33 @@ namespace KonsolenKampfspiel
             this.boni = boni;
         }
 
-        public void ShowCard()
+        public override void Show()
         {
-            Console.WriteLine("Name: " + name);
-            Console.WriteLine("Boni: " + boni);
+            var table =
+            new ConsoleTable(new ConsoleTableOptions
+            {
+                Columns = new[] { "Name", name },
+                EnableCount = false
+            });
+
+            table
+            .AddRow("Boni", boni);
+
+            table.Write(Format.Alternative);
         }
     }
 
     public class Suit: Equipment
     {
-        public void Show()
-        {
-            Console.WriteLine("Name: " + name);
-            Console.WriteLine("Boni: " + boni);
-        }
+        //public void Show()
+        //{
+        //    WriteTableHorizontally();
+        //    Console.Write("\t|Name: \t\t|" + name);
+        //    Console.SetCursorPosition(50, Console.CursorTop); Console.WriteLine("|");
+        //    Console.Write("\t|Boni: \t|" + boni);
+        //    Console.SetCursorPosition(50, Console.CursorTop); Console.WriteLine("|");
+        //    WriteTableHorizontally();
+        //}
         public Suit(string name, int boni) : base (name, boni)
         {
            

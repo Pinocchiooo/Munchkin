@@ -44,7 +44,7 @@ namespace KonsolenKampfspiel
             if (headgear != null)
             {
                 Console.WriteLine();
-                headgear.ShowCard();
+                headgear.Show();
             } else
             {
                 Console.WriteLine("nur ein Kopf");
@@ -54,7 +54,7 @@ namespace KonsolenKampfspiel
             if (footwear != null)
             {
                 Console.WriteLine();
-                footwear.ShowCard();
+                footwear.Show();
             } else
             {
                 Console.WriteLine("zwei Füße");
@@ -64,7 +64,7 @@ namespace KonsolenKampfspiel
             if (suit != null)
             {
                 Console.WriteLine();
-                suit.ShowCard();
+                suit.Show();
 
             } else
             {
@@ -79,7 +79,7 @@ namespace KonsolenKampfspiel
                     Console.Write("Hand " + i + ": ");
                     if (hands[i] != null)
                     {
-                        hands[i].ShowCard();                    
+                        hands[i].Show();                    
                     } else
                     {
                         Console.WriteLine("Mit einer leeren Hand lässt sich nicht so leicht kämpfen.");
@@ -96,7 +96,7 @@ namespace KonsolenKampfspiel
                     if (hands[i] != null)
                     {
                         something++;
-                        hands[i].ShowCard();
+                        hands[i].Show();
                     } 
                     if (something == 0)
                     {

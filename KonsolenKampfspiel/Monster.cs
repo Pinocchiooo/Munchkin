@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
+using ConsoleTables;
 
 namespace KonsolenKampfspiel
 {
@@ -19,12 +21,21 @@ namespace KonsolenKampfspiel
             this.increasment = increasment;
         }
 
-        public void ShowMonster()
+        public override void Show()
         {
-            Console.WriteLine("Name: " + name);
-            Console.WriteLine("Treasure: " + treasure);
-            Console.WriteLine("Level: " + level);
-            Console.WriteLine("Increasement: " + increasment);
+            var table =
+            new ConsoleTable(new ConsoleTableOptions
+            {
+                Columns = new[] { "Name", name },
+                EnableCount = false
+            });
+
+            table
+            .AddRow("Treasure", treasure)
+            .AddRow("Level", level)
+            .AddRow("Increasment", increasment);
+
+            table.Write(Format.Alternative);
         }
 
 

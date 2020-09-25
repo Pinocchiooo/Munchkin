@@ -33,6 +33,6 @@ namespace KonsolenKampfspiel
         body,
         feet,
         hands,
-        other
+        other      
     }
 }

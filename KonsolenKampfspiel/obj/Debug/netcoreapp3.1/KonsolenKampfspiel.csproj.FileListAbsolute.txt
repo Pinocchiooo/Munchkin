@@ -20,3 +20,5 @@ C:\Users\AdrianaBrunster\Documents\GitHub\Munchkin\KonsolenKampfspiel\obj\Debug\
 C:\Users\AdrianaBrunster\Documents\GitHub\Munchkin\KonsolenKampfspiel\obj\Debug\netcoreapp3.1\KonsolenKampfspiel.AssemblyInfo.cs
 C:\Users\AdrianaBrunster\Documents\GitHub\Munchkin\KonsolenKampfspiel\obj\Debug\netcoreapp3.1\KonsolenKampfspiel.dll
 C:\Users\AdrianaBrunster\Documents\GitHub\Munchkin\KonsolenKampfspiel\obj\Debug\netcoreapp3.1\KonsolenKampfspiel.pdb
+C:\Users\AdrianaBrunster\Documents\GitHub\Munchkin\KonsolenKampfspiel\bin\Debug\netcoreapp3.1\ConsoleTables.dll
+C:\Users\AdrianaBrunster\Documents\GitHub\Munchkin\KonsolenKampfspiel\obj\Debug\netcoreapp3.1\KonsolenKampfspiel.csproj.CopyComplete

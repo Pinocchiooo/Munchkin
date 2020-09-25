@@ -5,7 +5,7 @@ using System.Xml;
 
 namespace KonsolenKampfspiel
 {
-    public class Card
+    public abstract class Card
     {
         static public List<Card> readDoorCards()
         {
@@ -115,21 +115,21 @@ namespace KonsolenKampfspiel
                 }
             }
 
-            //testing Code
-            foreach (Card card in cards)
-            {
-                Suit test = card as Suit;
-                if (test != null)
-                {
-                    test.Show();
-                }
-            }
-            Console.WriteLine("Finish!");
-            Console.ReadLine();
+            ////testing Code
+            //foreach (Card card in cards)
+            //{
+            //    Suit test = card as Suit;
+            //    if (test != null)
+            //    {
+            //        test.Show();
+            //    }
+            //}
+            //Console.WriteLine("Finish!");
+            //Console.ReadLine();
             return cards;
         }
 
-
+        public abstract void Show();
         static public void Shuffle(List<Card> cards)
         {  
  //muss keine Liste zurückgeben, da eine Liste ein Referenztyp ist

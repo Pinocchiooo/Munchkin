@@ -96,15 +96,19 @@ namespace KonsolenKampfspiel
 
         void ShowHandCards()
         {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Deine HandKarten: \n");
+            Console.ForegroundColor = ConsoleColor.White;
             for (int i = 0; i <= handCards.Count - 1; i++)
             {
                 if (handCards[i] as Monster != null) {
                     Monster monster = handCards[i] as Monster;
-                    monster.ShowMonster();
+                    monster.Show();
                 } else if (handCards[i] as Equipment != null)
                 {
                     Equipment equipment = handCards[i] as Equipment;
-                    equipment.ShowCard();
+                    equipment.Show();
                 }
                 Console.WriteLine();
             }
