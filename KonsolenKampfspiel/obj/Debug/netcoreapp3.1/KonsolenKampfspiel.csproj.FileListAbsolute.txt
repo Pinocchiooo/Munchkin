@@ -22,3 +22,5 @@ C:\Users\AdrianaBrunster\Documents\GitHub\Munchkin\KonsolenKampfspiel\obj\Debug\
 C:\Users\AdrianaBrunster\Documents\GitHub\Munchkin\KonsolenKampfspiel\obj\Debug\netcoreapp3.1\KonsolenKampfspiel.pdb
 C:\Users\AdrianaBrunster\Documents\GitHub\Munchkin\KonsolenKampfspiel\bin\Debug\netcoreapp3.1\ConsoleTables.dll
 C:\Users\AdrianaBrunster\Documents\GitHub\Munchkin\KonsolenKampfspiel\obj\Debug\netcoreapp3.1\KonsolenKampfspiel.csproj.CopyComplete
+C:\Users\AdrianaBrunster\Documents\GitHub\Munchkin\KonsolenKampfspiel\obj\Debug\netcoreapp3.1\KonsolenKampfspiel.Properties.Resources.resources
+C:\Users\AdrianaBrunster\Documents\GitHub\Munchkin\KonsolenKampfspiel\obj\Debug\netcoreapp3.1\KonsolenKampfspiel.csproj.GenerateResource.cache

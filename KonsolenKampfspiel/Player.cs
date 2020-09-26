@@ -105,8 +105,29 @@ namespace KonsolenKampfspiel
                 }
             }
         }
-        public void useEquipment(Equipment newEquipment)
+        public bool useEquipment(Equipment newEquipment)
         {
+            Suit suit = newEquipment as Suit;
+            if (suit != null) {
+                if (this.suit == null)
+                {
+                    this.suit = suit;
+                    return true;
+                } else
+                {
+                    Console.WriteLine("Möchtest du den vorhandenen Rüstungsgegenstand austauschen? [y/n]");
+                    this.suit.Show();
+                    if (Console.ReadLine() == "y")
+                    {
+                        this.suit = suit;
+                        return true;
+                    } else
+                    {
+                        return false;
+                    }
+                }
+            }
+            return false;
             //switch (newEquipment.wearingStyle)
             //{
             //    case WearingStyle.head:

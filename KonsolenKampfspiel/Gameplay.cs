@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace KonsolenKampfspiel
 {
@@ -40,8 +41,9 @@ namespace KonsolenKampfspiel
                     case "k":
                         ShowHandCards();
                         break;
-                    case "e":
-                        ShowHandCards();
+                    case "r":
+                        Console.Clear();
+                        ShowTreasureCards();
                         player.showEquipment();
                         Console.WriteLine("Wenn du eine Karte anwenden möchtest, dann gib einfach den Kartenindex an, anonsten drücke [f]");
                         String input = Console.ReadLine();
@@ -49,12 +51,15 @@ namespace KonsolenKampfspiel
                         {
                             break;
                         }
-                        else if (input == Convert.ToString(1..handCards.Count))
+                        else // if (Enumerable.Range(0, handCards.Count - 1).Contains(Convert.ToInt32(input)))
                         {
-                            Equipment newEquipmentCard = handCards[Convert.ToInt32(input) - 1] as Equipment;
+                            Equipment newEquipmentCard = handCards[Convert.ToInt32(input)] as Equipment;
                             if (newEquipmentCard != null)
                             {
-                                player.useEquipment(newEquipmentCard);
+                                if (player.useEquipment(newEquipmentCard))
+                                {
+                                    DeleteHandCardAt(Convert.ToInt32(input));
+                                }
                                 player.showEquipment();
                             }
                             else
@@ -63,14 +68,29 @@ namespace KonsolenKampfspiel
                             }
                         }
                         break;
+                    default:
+                        Console.WriteLine("Um dir deine Handkarten anzusehen drücke einfach \"k\" [k]");
+                        Console.WriteLine("Eine Rüstungskarte anwenden/ auswechseln [r]");
+                        Console.WriteLine("Wenn du nicht mehr weißt, wie steuern kannst, lass dir gerne helfen [h]");
+                        break;
                 }
             }
         }
 
         void Playerturn()
         {
+            //Karten anwenden?
+            //türkarte ziehen -> Monsterkampf?
+            //Karten anwenden?
+            //Karten wegschmeißen?
+            //TODO karten nachziehen
         }
-        
+
+        void DeleteHandCardAt(int cardID)
+        {
+            handCards.RemoveAt(cardID);
+        }
+
         void TakeTreasureCard(int number)
         {
             for (int i = 0; i <= number -1; i++)
@@ -94,24 +114,43 @@ namespace KonsolenKampfspiel
             }
         }
 
-        void ShowHandCards()
+        void ShowTreasureCards()
         {
-            Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Deine HandKarten: \n");
+            Console.WriteLine("Deine SchatzKarten: \n");
             Console.ForegroundColor = ConsoleColor.White;
             for (int i = 0; i <= handCards.Count - 1; i++)
             {
-                if (handCards[i] as Monster != null) {
-                    Monster monster = handCards[i] as Monster;
-                    monster.Show();
-                } else if (handCards[i] as Equipment != null)
+                if (handCards[i] as Equipment != null)
                 {
                     Equipment equipment = handCards[i] as Equipment;
-                    equipment.Show();
+                    equipment.Show(i);
                 }
                 Console.WriteLine();
             }
+        }
+
+        void ShowDoorCards()
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Deine Türkarten: \n");
+            Console.ForegroundColor = ConsoleColor.White;
+            for (int i = 0; i <= handCards.Count - 1; i++)
+            {
+                if (handCards[i] as Monster != null)
+                {
+                    Monster monster = handCards[i] as Monster;
+                    monster.Show(i);
+                }
+                Console.WriteLine();
+            }
+        }
+        void ShowHandCards()
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Deine HandKarten: \n");
+            ShowDoorCards();
+            ShowTreasureCards();
         }
     }
 }

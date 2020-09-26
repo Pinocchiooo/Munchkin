@@ -21,16 +21,17 @@ namespace KonsolenKampfspiel
             this.increasment = increasment;
         }
 
-        public override void Show()
+        public override void Show(int cardID)
         {
             var table =
             new ConsoleTable(new ConsoleTableOptions
             {
-                Columns = new[] { "Name", name },
+                Columns = new[] { "ID", cardID.ToString() },
                 EnableCount = false
             });
 
             table
+            .AddRow("Name", name)
             .AddRow("Treasure", treasure)
             .AddRow("Level", level)
             .AddRow("Increasment", increasment);

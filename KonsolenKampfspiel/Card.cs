@@ -129,7 +129,7 @@ namespace KonsolenKampfspiel
             return cards;
         }
 
-        public abstract void Show();
+        public abstract void Show(int cardID);
         static public void Shuffle(List<Card> cards)
         {  
  //muss keine Liste zurückgeben, da eine Liste ein Referenztyp ist

@@ -15,16 +15,17 @@ namespace KonsolenKampfspiel
             this.boni = boni;
         }
 
-        public override void Show()
+        public override void Show(int cardID = 0)
         {
             var table =
             new ConsoleTable(new ConsoleTableOptions
             {
-                Columns = new[] { "Name", name },
+                Columns = new[] { "ID", cardID.ToString() },
                 EnableCount = false
             });
 
             table
+            .AddRow("Name", name)
             .AddRow("Boni", boni);
 
             table.Write(Format.Alternative);
