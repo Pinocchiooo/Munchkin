@@ -11,6 +11,8 @@ namespace KonsolenKampfspiel
         List<Card> treasureCards;
         List<Card> doorcards;
         List<Card> handCards;
+        Random rnd = new Random();
+
 
         public Gameplay(Player player, List<Card> treasureCards, List<Card> doorcards)
         {
@@ -20,23 +22,23 @@ namespace KonsolenKampfspiel
             this.handCards = new List<Card>();
             TakeTreasureCard(3);
             TakeDoorCard(3);
-            ShowHandCards();
-            checkingForUserInput();
+            ShowHelp();
+            CheckingForUserInput();
+            PlayerTurn();
         }
 
         
-        private void checkingForUserInput()
+        private void CheckingForUserInput()
         {
-            while (true)
+            bool finish = false;
+            do
             {
                 string keyInput = Console.ReadLine();
                 Console.Clear();
                 switch (keyInput)
                 {
                     case "h":
-                        Console.WriteLine("Um dir deine Handkarten anzusehen drücke einfach \"k\" [k]");
-                        Console.WriteLine("Eine Rüstungskarte anwenden/ auswechseln [r]");
-                        Console.WriteLine("Wenn du nicht mehr weißt, wie steuern kannst, lass dir gerne helfen [h]");
+                        ShowHelp();
                         break;
                     case "k":
                         ShowHandCards();
@@ -44,23 +46,23 @@ namespace KonsolenKampfspiel
                     case "r":
                         Console.Clear();
                         ShowTreasureCards();
-                        player.showEquipment();
+                        player.ShowEquipment();
                         Console.WriteLine("Wenn du eine Karte anwenden möchtest, dann gib einfach den Kartenindex an, anonsten drücke [f]");
                         String input = Console.ReadLine();
                         if (input == "f")
                         {
                             break;
                         }
-                        else // if (Enumerable.Range(0, handCards.Count - 1).Contains(Convert.ToInt32(input)))
+                        else
                         {
                             Equipment newEquipmentCard = handCards[Convert.ToInt32(input)] as Equipment;
                             if (newEquipmentCard != null)
                             {
-                                if (player.useEquipment(newEquipmentCard))
+                                if (player.UseEquipment(newEquipmentCard))
                                 {
                                     DeleteHandCardAt(Convert.ToInt32(input));
                                 }
-                                player.showEquipment();
+                                player.ShowEquipment();
                             }
                             else
                             {
@@ -68,22 +70,122 @@ namespace KonsolenKampfspiel
                             }
                         }
                         break;
+                    case "d":
+                        //TODO Karten wegwerfen
+                        break;
+                    case "s":
+                        Console.Clear();
+                        Console.WriteLine("Deine Stärke: " + player.Strenght);
+                        break;
+                    case "l":
+                        Console.Clear();
+                        Console.WriteLine("Dein Level: " + player.Level);
+                        break;
+                    case "f":
+                        finish = true;
+                        break;
                     default:
-                        Console.WriteLine("Um dir deine Handkarten anzusehen drücke einfach \"k\" [k]");
-                        Console.WriteLine("Eine Rüstungskarte anwenden/ auswechseln [r]");
-                        Console.WriteLine("Wenn du nicht mehr weißt, wie steuern kannst, lass dir gerne helfen [h]");
+                        ShowHelp();
                         break;
                 }
+            } while (!finish);
+        }
+
+        public static void ShowHelp()
+        {
+            Console.WriteLine("Um dir deine Handkarten anzusehen drücke einfach \"k\" [k]");
+            Console.WriteLine("Eine Rüstungskarte anwenden/ auswechseln [r]");
+            Console.WriteLine("Karten kannst du mit [d] wegwerfen");
+            Console.WriteLine("Wie stark bin ich? [s]");
+            Console.WriteLine("Welches Level habe ich? [l]");
+            Console.WriteLine("Wenn du nicht mehr weißt, wie du steuern kannst, lass dir gerne helfen [h]");
+            Console.WriteLine("Mit [f] geht das Spiel weiter");
+        }
+        void PlayerTurn()
+        {
+            do
+            {
+                Card doorcard = doorcards[doorcards.Count - 1];
+                doorcards.RemoveAt(doorcards.Count - 1);
+                Monster monster = doorcard as Monster;
+                if (monster != null)
+                {
+                    monster.Show(0);
+                    Console.WriteLine("Deine Kampfkraft ist: " + player.Strenght);
+                    Console.WriteLine("Möchtest du gegen das Monster antreten [1] oder lieber schnell weglaufen [2]?");
+                    string input = Console.ReadLine();
+                    if (input == "1")
+                    {
+                        if (monster.battle(player.Strenght))
+                        {
+                            Console.WriteLine("Du hast das Monster besiegt!");
+                            TakeTreasureCard(monster.treasure);                        
+                            player.IncreaseLevel();
+                            ShowHandCards();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Du hast leider zu wenig Kampfkraft und muss jetzt dein Glück mit weglaufen versuchen.");
+                            RunAway(player.Speed);
+                        }
+                    }
+                    else
+                    {
+                        RunAway(player.Speed);
+                    }
+
+                }
+                else
+                {
+                    handCards.Add(doorcard);
+                    Console.Write("Möchtest du gegen ein Monster aus deinen Handkarten kämpfen? [y/n]");
+                    if (Console.ReadLine() == "y")
+                    {
+                        //TODO
+                    }
+                    else
+                    {
+                        TakeDoorCard(1);
+                    }
+                }
+                CheckingForUserInput();
+                if (handCards.Count > 6)
+                {
+                    Console.WriteLine("Du hast zu viele Karten auf der Hand.\n Höchstens 6 Karten darfst du auf deiner Hand besitzen");
+                    CheckingForUserInput();
+                }
+            } while (player.Level < 10);
+            Console.Write("Du hast gewonnen!!!!!");
+            Console.ReadLine();
+            Environment.Exit(0);
+        }
+
+        void RunAway(int speed)
+        {
+            int random = rnd.Next(1, 6);
+            if (speed >= random)
+            {
+                Console.WriteLine("Du hast eine " + random + " gewürfelt.");
+                Console.WriteLine("Du bist beim panischen weglaufen über einen Stein gestolpert und das Monster hat dich geschnappt.\nDu bist tot. Das Monster wird nun eine wohlschmeckende Mahlzeit verzehren.");
+                GameOver();
+            } else
+            {
+                Console.WriteLine("Du hast eine " + random + " gewürfelt.");
+                Console.WriteLine("Du bist erfolgreich weggerannt und hast das Monster abgehängt.");
+                return;
             }
         }
 
-        void Playerturn()
+        void GameOver()
         {
-            //Karten anwenden?
-            //türkarte ziehen -> Monsterkampf?
-            //Karten anwenden?
-            //Karten wegschmeißen?
-            //TODO karten nachziehen
+            Console.WriteLine("Möchtest du es nochmal versuchen? [y/n]");
+            if (Console.ReadLine() == "y")
+            {
+                Preparation.NewGame();
+            } else
+            {
+                Environment.Exit(0);                
+            }
         }
 
         void DeleteHandCardAt(int cardID)

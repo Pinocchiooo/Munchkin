@@ -22,12 +22,28 @@ namespace KonsolenKampfspiel
 
         Category category;
         Race race;
+        int speed = 4;  //TODO: shoes could help you to run 
+        int equipmentBoni;
 
-        int strenght
+        public int Level
         {
             get
             {
-                return level; //TODO: and equipmentpoints
+                return level;
+            }
+        }
+        public int Speed
+        {
+            get
+            {
+                return this.speed;
+            }
+        } 
+        public int Strenght
+        {
+            get
+            {
+                return level + equipmentBoni;
             }
         }
         int level;
@@ -38,7 +54,11 @@ namespace KonsolenKampfspiel
         Equipment suit;
         Equipment[] others;
 
-        public void showEquipment()
+        public void IncreaseLevel()
+        {
+            level++;
+        }
+        public void ShowEquipment()
         {
             Console.Write("Helm: ");
             if (headgear != null)
@@ -105,13 +125,14 @@ namespace KonsolenKampfspiel
                 }
             }
         }
-        public bool useEquipment(Equipment newEquipment)
+        public bool UseEquipment(Equipment newEquipment)
         {
             Suit suit = newEquipment as Suit;
             if (suit != null) {
                 if (this.suit == null)
                 {
                     this.suit = suit;
+                    this.equipmentBoni += suit.boni;
                     return true;
                 } else
                 {
@@ -119,7 +140,9 @@ namespace KonsolenKampfspiel
                     this.suit.Show();
                     if (Console.ReadLine() == "y")
                     {
+                        this.equipmentBoni -= this.suit.boni;
                         this.suit = suit;
+                        this.equipmentBoni += suit.boni;
                         return true;
                     } else
                     {

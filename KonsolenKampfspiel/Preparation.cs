@@ -9,6 +9,10 @@ namespace KonsolenKampfspiel
     {      
         static void Main(string[] args)
         {
+            NewGame();
+        }
+
+        static public void NewGame() {
             List<Card> doorCards = Card.readDoorCards();
             List<Card> treasureCards = Card.readTreasureCards();
             Card.Shuffle(treasureCards);
@@ -21,10 +25,6 @@ namespace KonsolenKampfspiel
         {
             Console.Title = "Munchkin";
             Console.WriteLine("Willkommen Knirps,\nEs sind viele Monster unterwegs. Stelle dich der Herausforderung und erlange als ertster die 10. Stufe indem sie besiegst.");
-            Console.WriteLine("Um dir deine Handkarten anzusehen drücke einfach \"k\" [k]");
-            Console.WriteLine("Eine Rüstungskarte anwenden/ auswechseln [r]");
-            Console.WriteLine("Wenn du nicht mehr weißt, wie du steuern kannst, lass dir gerne helfen [h]");
-
 
             Console.WriteLine("\nWie ist dein Name?");
             String name = Console.ReadLine();

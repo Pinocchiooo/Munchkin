@@ -8,10 +8,10 @@ namespace KonsolenKampfspiel
 {
     public class Monster: Card
     {
-        string name;
-        int level;
-        int treasure;
-        int increasment;
+        public string name;
+        public int level;
+        public int treasure;
+        public int increasment;
 
         public Monster(string name, int level, int treasure, int increasment)
         {
