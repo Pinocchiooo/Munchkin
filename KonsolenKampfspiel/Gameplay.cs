@@ -105,55 +105,57 @@ namespace KonsolenKampfspiel
         {
             do
             {
-                Card doorcard = doorcards[doorcards.Count - 1];
-                doorcards.RemoveAt(doorcards.Count - 1);
-                Monster monster = doorcard as Monster;
-                if (monster != null)
-                {
-                    monster.Show(0);
-                    Console.WriteLine("Deine Kampfkraft ist: " + player.Strenght);
-                    Console.WriteLine("Möchtest du gegen das Monster antreten [1] oder lieber schnell weglaufen [2]?");
-                    string input = Console.ReadLine();
-                    if (input == "1")
-                    {
-                        if (monster.battle(player.Strenght))
-                        {
-                            Console.WriteLine("Du hast das Monster besiegt!");
-                            TakeTreasureCard(monster.treasure);                        
-                            player.IncreaseLevel();
-                            ShowHandCards();
-                        }
-                        else
-                        {
-                            Console.WriteLine("Du hast leider zu wenig Kampfkraft und muss jetzt dein Glück mit weglaufen versuchen.");
-                            RunAway(player.Speed);
-                        }
-                    }
-                    else
-                    {
-                        RunAway(player.Speed);
-                    }
-
-                }
-                else
-                {
-                    handCards.Add(doorcard);
-                    Console.Write("Möchtest du gegen ein Monster aus deinen Handkarten kämpfen? [y/n]");
-                    if (Console.ReadLine() == "y")
-                    {
-                        //TODO
-                    }
-                    else
-                    {
-                        TakeDoorCard(1);
-                    }
-                }
-                CheckingForUserInput();
                 if (handCards.Count > 6)
                 {
                     Console.WriteLine("Du hast zu viele Karten auf der Hand.\n Höchstens 6 Karten darfst du auf deiner Hand besitzen");
-                    CheckingForUserInput();
                 }
+                else
+                {
+                    Card doorcard = doorcards[doorcards.Count - 1];
+                    doorcards.RemoveAt(doorcards.Count - 1);
+                    Monster monster = doorcard as Monster;
+                    if (monster != null)
+                    {
+                        monster.Show(0);
+                        Console.WriteLine("Deine Kampfkraft ist: " + player.Strenght);
+                        Console.WriteLine("Möchtest du gegen das Monster antreten [1] oder lieber schnell weglaufen [2]?");
+                        string input = Console.ReadLine();
+                        if (input == "1")
+                        {
+                            if (monster.battle(player.Strenght))
+                            {
+                                Console.WriteLine("Du hast das Monster besiegt!");
+                                TakeTreasureCard(monster.treasure);
+                                player.IncreaseLevel();
+                                ShowHandCards();
+                            }
+                            else
+                            {
+                                Console.WriteLine("Du hast leider zu wenig Kampfkraft und muss jetzt dein Glück mit weglaufen versuchen.");
+                                RunAway(player.Speed);
+                            }
+                        }
+                        else
+                        {
+                            RunAway(player.Speed);
+                        }
+
+                    }
+                    else
+                    {
+                        handCards.Add(doorcard);
+                        Console.Write("Möchtest du gegen ein Monster aus deinen Handkarten kämpfen? [y/n]");
+                        if (Console.ReadLine() == "y")
+                        {
+                            //TODO
+                        }
+                        else
+                        {
+                            TakeDoorCard(1);
+                        }
+                    }
+                }
+                CheckingForUserInput();
             } while (player.Level < 10);
             Console.Write("Du hast gewonnen!!!!!");
             Console.ReadLine();
@@ -197,7 +199,7 @@ namespace KonsolenKampfspiel
         {
             for (int i = 0; i <= number -1; i++)
             {
-                if (handCards.Count < 6 && treasureCards.Count >=1)
+                if (treasureCards.Count >=1)
                 {
                     handCards.Add(treasureCards[treasureCards.Count - 1]);
                     treasureCards.RemoveAt(treasureCards.Count - 1);
@@ -208,7 +210,7 @@ namespace KonsolenKampfspiel
         {
             for (int i = 0; i <= number -1; i++)
             {
-                if (handCards.Count < 6 && treasureCards.Count >= 1)
+                if (treasureCards.Count >= 1)
                 {
                     handCards.Add(doorcards[doorcards.Count - 1]);
                     doorcards.RemoveAt(doorcards.Count - 1);
