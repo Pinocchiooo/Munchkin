@@ -28,8 +28,7 @@ namespace KonsolenKampfspiel
     }
 
     public enum WearingStyle
-    {
-        head,
+    {   head,
         body,
         feet,
         hands,

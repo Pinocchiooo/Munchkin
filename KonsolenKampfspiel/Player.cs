@@ -65,9 +65,8 @@ namespace KonsolenKampfspiel
         }
         public void ShowEquipment()
         {
-            Console.ForegroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Dein aktuelles Equipment: ");
-            Console.ForegroundColor = ConsoleColor.White;
             Console.Write("Helm: ");
             if (headgear != null)
             {
@@ -104,7 +103,6 @@ namespace KonsolenKampfspiel
                 Console.WriteLine();
                 for(int i = 0; i <= hands.Count - 1; i++)
                 {
-                    Console.WriteLine("Hand " + i + ": ");
                     if (hands[i] != null)
                     {
                         hands[i].Show();                    
@@ -123,6 +121,7 @@ namespace KonsolenKampfspiel
                     card.Show();                    
                 }
             }
+            Console.ForegroundColor = ConsoleColor.White;
         }
         public bool UseEquipment(Equipment newEquipment)
         {
@@ -137,7 +136,10 @@ namespace KonsolenKampfspiel
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Magenta;
                         Console.WriteLine("Möchtest du den vorhandenen Rüstungsgegenstand austauschen? [j/n]");
+                        Console.ForegroundColor = ConsoleColor.White;
+
                         this.suit.Show();
                         if (Console.ReadLine() == "j")
                         {
@@ -161,7 +163,10 @@ namespace KonsolenKampfspiel
                         }
                         else
                         {
+                            Console.ForegroundColor = ConsoleColor.Magenta;
                             Console.WriteLine("Möchtest du den vorhandenen Rüstungsgegenstand austauschen? [j/n]");
+                            Console.ForegroundColor = ConsoleColor.White;
+
                             this.footwear.Show();
                             if (Console.ReadLine() == "j")
                             {
@@ -187,7 +192,10 @@ namespace KonsolenKampfspiel
                         }
                         else
                         {
+                            Console.ForegroundColor = ConsoleColor.Magenta;
                             Console.WriteLine("Möchtest du den vorhandenen Rüstungsgegenstand austauschen? [j/n]");
+                            Console.ForegroundColor = ConsoleColor.White;
+
                             this.headgear.Show();
                             if (Console.ReadLine() == "j")
                             {
@@ -223,6 +231,10 @@ namespace KonsolenKampfspiel
                             {
                                 card.Show(0);
                             }
+                            Console.ForegroundColor = ConsoleColor.Magenta;
+                            Console.Write("Bitte drücke eine beliebige Taste");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.ReadKey();
                             return false;                            
                         }
                     }
@@ -230,16 +242,5 @@ namespace KonsolenKampfspiel
             }
             return false;      
         } 
-       
-        //private int CheckFreeHands()
-        //{
-        //    int freeHands = 0;
-        //    foreach(Equipment hand in hands)
-        //    {
-        //        freeHands++;
-        //    }
-        //    return freeHands;
-        //}
-
     }
 }

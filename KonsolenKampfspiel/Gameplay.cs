@@ -44,11 +44,13 @@ namespace KonsolenKampfspiel
                     case "k":
                         ShowHandCards();
                         break;
-                    case "r":
+                    case "e":
                         Console.Clear();
                         ShowTreasureCards();
                         player.ShowEquipment();
+                        Console.ForegroundColor = ConsoleColor.Magenta;
                         Console.WriteLine("Wenn du eine Karte anwenden möchtest, dann gib einfach den Kartenindex an, anonsten drücke [f]");
+                        Console.ForegroundColor = ConsoleColor.White;
                         String input = Console.ReadLine();
                         if (input == "f")
                         {
@@ -65,6 +67,7 @@ namespace KonsolenKampfspiel
                                     {
                                         DeleteHandCardAt(Convert.ToInt32(input));
                                     }
+                                    Console.Clear();
                                     player.ShowEquipment();
                                 }
                                 else
@@ -79,7 +82,10 @@ namespace KonsolenKampfspiel
                         }
                         break;
                     case "v":
-                        Console.WriteLine("Gebe den Index aller Karten, die du verkaufen möchtest kommagetrennt an. z.B. [1,5,4]");
+                        ShowTreasureCards();
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("Gebe den Index aller Karten, die du verkaufen möchtest, kommagetrennt an. z.B. [1,5,4]");
+                        Console.ForegroundColor = ConsoleColor.White;
                         try
                         {
                             int[] indexInput = Console.ReadLine().Split(',').Select(int.Parse).ToArray();
@@ -96,7 +102,7 @@ namespace KonsolenKampfspiel
                             int increase = Convert.ToInt32(jewels / 1000);
                             player.IncreaseLevel(increase);
                             Console.Clear();
-                            Console.WriteLine("Dein Equipment liegt nun auf dem Marktplatz. Die dafür erhaltenen Goldstücke: " + jewels + "hast du gegen " + increase + "Stufe(n) eingetauscht.");
+                            Console.WriteLine("Dein Equipment liegt nun auf dem Marktplatz. Die dafür erhaltenen Goldstücke: " + jewels + " hast du gegen " + increase + " Stufe(n) eingetauscht.");
                         }
                         catch
                         {
@@ -120,14 +126,14 @@ namespace KonsolenKampfspiel
                         ShowHelp();
                         break;
                 }
-                Console.Write("\n\nWas Möchtest du tun? : ");
+                Console.Write("\n\nWas Möchtest du tun?  ");
             } while (!finish);
         }
 
         public static void ShowHelp()
         {
             Console.WriteLine("Um dir deine Handkarten anzusehen drücke einfach \"k\" [k]");
-            Console.WriteLine("Eine Rüstungskarte anwenden/ auswechseln [r]");
+            Console.WriteLine("Eine Equipmentkarte anzuwenden/ auszuwechseln [e]");
             Console.WriteLine("Karten verkaufen (pro 1000 Goldstücke erhälst du eine Stufe.) [v]");
             Console.WriteLine("Wie stark bin ich? [s]");
             Console.WriteLine("Welches Level habe ich? [l]");
@@ -149,12 +155,15 @@ namespace KonsolenKampfspiel
                     Monster monster = doorcard as Monster;
                     if (monster != null)
                     {
-                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Ein Monster greift dich an.");
-                        Console.ForegroundColor = ConsoleColor.White;
                         monster.Show(0);
+                        Console.ForegroundColor = ConsoleColor.White;
                         Console.WriteLine("Deine Kampfkraft ist: " + player.Strenght);
+                        Console.ForegroundColor = ConsoleColor.Magenta;
                         Console.WriteLine("Möchtest du gegen das Monster antreten [1] oder lieber schnell weglaufen [2]?");
+                        Console.ForegroundColor = ConsoleColor.White;
                         string input = Console.ReadLine();
                         if (input == "1")
                         {
@@ -164,6 +173,8 @@ namespace KonsolenKampfspiel
                                 TakeTreasureCard(monster.treasure);
                                 player.IncreaseLevel(monster.increasment);
                                 ShowHandCards();
+                                Console.WriteLine("Bitte eine Taste drücken.");
+                                Console.ReadKey();
                             }
                             else
                             {
@@ -180,7 +191,10 @@ namespace KonsolenKampfspiel
                     else
                     {
                         handCards.Add(doorcard);
+                        Console.ForegroundColor = ConsoleColor.Magenta;
                         Console.Write("Möchtest du gegen ein Monster aus deinen Handkarten kämpfen? [j/n]");
+                        Console.ForegroundColor = ConsoleColor.White;
+
                         if (Console.ReadLine() == "j")
                         {
                             //TODO
@@ -193,6 +207,7 @@ namespace KonsolenKampfspiel
                 }
                 CheckingForUserInput();
             } while (player.Level < 10);
+            Console.Clear();
             Console.Write("Du hast gewonnen!!!!!");
             Console.ReadLine();
             Environment.Exit(0);
@@ -216,7 +231,10 @@ namespace KonsolenKampfspiel
 
         void GameOver()
         {
+            Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("Möchtest du es nochmal versuchen? [j/n]");
+            Console.ForegroundColor = ConsoleColor.White;
+
             if (Console.ReadLine() == "j")
             {
                 Console.Clear();
@@ -259,7 +277,6 @@ namespace KonsolenKampfspiel
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Deine SchatzKarten: \n");
-            Console.ForegroundColor = ConsoleColor.White;
             for (int i = 0; i <= handCards.Count - 1; i++)
             {
                 if (handCards[i] as Equipment != null)
@@ -269,13 +286,13 @@ namespace KonsolenKampfspiel
                 }
                 Console.WriteLine();
             }
+            Console.ForegroundColor = ConsoleColor.White;
         }
 
         void ShowDoorCards()
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Deine Türkarten: \n");
-            Console.ForegroundColor = ConsoleColor.White;
             for (int i = 0; i <= handCards.Count - 1; i++)
             {
                 if (handCards[i] as Monster != null)
@@ -285,11 +302,10 @@ namespace KonsolenKampfspiel
                 }
                 Console.WriteLine();
             }
+            Console.ForegroundColor = ConsoleColor.White;
         }
         void ShowHandCards()
         {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Deine HandKarten: \n");
             ShowDoorCards();
             ShowTreasureCards();
         }

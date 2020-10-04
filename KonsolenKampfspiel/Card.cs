@@ -89,6 +89,7 @@ namespace KonsolenKampfspiel
                             string suitName = "";
                             int suitBoni = 0;
                             int suitJewel = 0;
+                            string suitType = "Rüstung";
                             foreach (XmlNode grandson in child)
                             {
                                 switch (grandson.Name)
@@ -108,7 +109,7 @@ namespace KonsolenKampfspiel
                             }
                             if (suitName != "" && suitBoni != 0 && suitJewel != 0)
                             {
-                                Card suit = new Equipment(suitName, suitBoni, body, suitJewel);
+                                Card suit = new Equipment(suitName, suitBoni, body, suitJewel, suitType);
                                 cards.Add(suit);
                             }
                             else
@@ -121,6 +122,7 @@ namespace KonsolenKampfspiel
                                 string feetName = "";
                                 int feetBoni = 0;
                                 int feetJewel = 0;
+                                string feetType = "Schuhe";
                                 foreach (XmlNode grandson in child)
                                 {
                                     switch (grandson.Name)
@@ -140,7 +142,7 @@ namespace KonsolenKampfspiel
                                 }
                                 if (feetName != "" && feetBoni != 0 && feetJewel != 0)
                                 {
-                                    Card footGear = new Equipment(feetName, feetBoni, feet, feetJewel);
+                                    Card footGear = new Equipment(feetName, feetBoni, feet, feetJewel, feetType);
                                     cards.Add(footGear);
                                 }
                                 else
@@ -153,6 +155,7 @@ namespace KonsolenKampfspiel
                                 string headName = "";
                                 int headBoni = 0;
                                 int headJewel = 0;
+                                string headType = "Kopfbedeckung";
                                 foreach (XmlNode grandson in child)
                                 {
                                     switch (grandson.Name)
@@ -172,7 +175,7 @@ namespace KonsolenKampfspiel
                                 }
                                 if (headName != "" && headBoni != 0 && headJewel != 0)
                                 {
-                                    Card headgear = new Equipment(headName, headBoni, head, headJewel);
+                                    Card headgear = new Equipment(headName, headBoni, head, headJewel, headType);
                                     cards.Add(headgear);
                                 }
                                 else
@@ -185,6 +188,7 @@ namespace KonsolenKampfspiel
                                 string otherName = "";
                                 int otherBoni = 0;
                                 int otherJewel = 0;
+                                string otherType = "Sonstiges";
                                 foreach (XmlNode grandson in child)
                                 {
                                     switch (grandson.Name)
@@ -204,7 +208,7 @@ namespace KonsolenKampfspiel
                                 }
                                 if (otherName != "" && otherBoni != 0)
                                 {
-                                    Card headgear = new Equipment(otherName, otherBoni, other, otherJewel);
+                                    Card headgear = new Equipment(otherName, otherBoni, other, otherJewel, otherType);
                                     cards.Add(headgear);
                                 }
                                 else
@@ -218,6 +222,7 @@ namespace KonsolenKampfspiel
                                 int handBoni = 0;
                                 int necessaryHands = 0;
                                 int handJewel = 0;
+                                string handType = "Waffen";
                                 foreach (XmlNode grandson in child)
                                 {
                                     switch (grandson.Name)
@@ -240,11 +245,11 @@ namespace KonsolenKampfspiel
                                 }
                                 if (handName != "" && handBoni != 0 && necessaryHands != 0)
                                 {
-                                    Card handStuff = new HandEquipment(handName, handBoni, hands, handJewel, necessaryHands);
+                                    Card handStuff = new HandEquipment(handName, handBoni, hands, handType, handJewel, necessaryHands);
                                     cards.Add(handStuff);
                                 }
                                 else
-                                {
+                                {                                    
                                     throw new System.Exception("Die XML Datei konnte nicht ordnungsgemäß eingelesen werden. Bitte überprüfe, ob die XML datei richtige Werte führt.");
                                 }
                                 break;
