@@ -13,8 +13,8 @@ namespace KonsolenKampfspiel
             category = Category.Mensch;
             race = Race.Mensch;
             level = 1;
-            hands = new Equipment[2];
-            others = new Equipment[10];
+            hands = new List<Equipment>();
+            others = new List<Equipment>();
         }
 
         string name;
@@ -24,6 +24,8 @@ namespace KonsolenKampfspiel
         Race race;
         int speed = 4;  //TODO: shoes could help you to run 
         int equipmentBoni;
+        int numberOfHands = 2;
+        int handsInUse = 0;
 
         public int Level
         {
@@ -50,16 +52,22 @@ namespace KonsolenKampfspiel
 
         Equipment headgear;
         Equipment footwear;
-        Equipment[] hands;
+        List<Equipment> hands;
         Equipment suit;
-        Equipment[] others;
+        List<Equipment> others;
 
-        public void IncreaseLevel()
+        public void IncreaseLevel(int count)
         {
-            level++;
+            for (int i = 0; i < count; i++)
+            {
+                level++;
+            }            
         }
         public void ShowEquipment()
         {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Dein aktuelles Equipment: ");
+            Console.ForegroundColor = ConsoleColor.White;
             Console.Write("Helm: ");
             if (headgear != null)
             {
@@ -94,9 +102,9 @@ namespace KonsolenKampfspiel
             if (hands != null)
             {
                 Console.WriteLine();
-                for(int i = 0; i <= hands.Length - 1; i++)
+                for(int i = 0; i <= hands.Count - 1; i++)
                 {
-                    Console.Write("Hand " + i + ": ");
+                    Console.WriteLine("Hand " + i + ": ");
                     if (hands[i] != null)
                     {
                         hands[i].Show();                    
@@ -110,18 +118,9 @@ namespace KonsolenKampfspiel
             Console.WriteLine("Weitere: ");
             if (hands != null)
             {
-                for (int i = 0; i <= hands.Length - 1; i++)
-                {
-                    int something = 0;
-                    if (hands[i] != null)
-                    {
-                        something++;
-                        hands[i].Show();
-                    } 
-                    if (something == 0)
-                    {
-                        Console.WriteLine("Mehr hast du Wohl nicht");
-                    }
+                foreach(Equipment card in others)
+                { 
+                    card.Show();                    
                 }
             }
         }
@@ -138,9 +137,9 @@ namespace KonsolenKampfspiel
                     }
                     else
                     {
-                        Console.WriteLine("Möchtest du den vorhandenen Rüstungsgegenstand austauschen? [y/n]");
+                        Console.WriteLine("Möchtest du den vorhandenen Rüstungsgegenstand austauschen? [j/n]");
                         this.suit.Show();
-                        if (Console.ReadLine() == "y")
+                        if (Console.ReadLine() == "j")
                         {
                             this.equipmentBoni -= this.suit.boni;
                             this.suit = newEquipment;
@@ -162,9 +161,9 @@ namespace KonsolenKampfspiel
                         }
                         else
                         {
-                            Console.WriteLine("Möchtest du den vorhandenen Rüstungsgegenstand austauschen? [y/n]");
+                            Console.WriteLine("Möchtest du den vorhandenen Rüstungsgegenstand austauschen? [j/n]");
                             this.footwear.Show();
-                            if (Console.ReadLine() == "y")
+                            if (Console.ReadLine() == "j")
                             {
                                 this.equipmentBoni -= this.footwear.boni;
                                 this.footwear = newEquipment;
@@ -188,9 +187,9 @@ namespace KonsolenKampfspiel
                         }
                         else
                         {
-                            Console.WriteLine("Möchtest du den vorhandenen Rüstungsgegenstand austauschen? [y/n]");
+                            Console.WriteLine("Möchtest du den vorhandenen Rüstungsgegenstand austauschen? [j/n]");
                             this.headgear.Show();
-                            if (Console.ReadLine() == "y")
+                            if (Console.ReadLine() == "j")
                             {
                                 this.equipmentBoni -= this.headgear.boni;
                                 this.headgear = newEquipment;
@@ -203,88 +202,44 @@ namespace KonsolenKampfspiel
                             }
                         }
                     }
-                //case WearingStyle.other:
-                //    if (this.others == null)
-                //    {
-                //        this.others = newEquipment;
-                //        this.equipmentBoni += others.boni;
-                //        return true;
-                //    }
-                //    else
-                //    {
-                //        Console.WriteLine("Möchtest du den vorhandenen Rüstungsgegenstand austauschen? [y/n]");
-                //        this.suit.Show();
-                //        if (Console.ReadLine() == "y")
-                //        {
-                //            this.equipmentBoni -= this.suit.boni;
-                //            this.suit = newEquipment;
-                //            this.equipmentBoni += suit.boni;
-                //            return true;
-                //        }
-                //        else
-                //        {
-                //            return false;
-                //        }
-                //    }
-                //case WearingStyle.hands:
-                //    if (this.suit == null)
-                //    {
-                //        this.suit = newEquipment;
-                //        this.equipmentBoni += suit.boni;
-                //        return true;
-                //    }
-                //    else
-                //    {
-                //        Console.WriteLine("Möchtest du den vorhandenen Rüstungsgegenstand austauschen? [y/n]");
-                //        this.suit.Show();
-                //        if (Console.ReadLine() == "y")
-                //        {
-                //            this.equipmentBoni -= this.suit.boni;
-                //            this.suit = newEquipment;
-                //            this.equipmentBoni += suit.boni;
-                //            return true;
-                //        }
-                //        else
-                //        {
-                //            return false;
-                //        }
-                //    }
-
+                case WearingStyle.other:
+                    this.others.Add(newEquipment);
+                    this.equipmentBoni += newEquipment.boni;
+                    return true;
+                case WearingStyle.hands:
+                    HandEquipment handEquipment = newEquipment as HandEquipment;
+                    if (handEquipment != null) {
+                        if (this.numberOfHands - handsInUse - handEquipment.hands >= 0) 
+                        {
+                            this.hands.Add(handEquipment);
+                            this.equipmentBoni += handEquipment.boni;
+                            this.handsInUse += handEquipment.hands;
+                            return true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Du musst erst genügend Hände frei haben.");
+                            foreach (HandEquipment card in hands)
+                            {
+                                card.Show(0);
+                            }
+                            return false;                            
+                        }
+                    }
+                    return false;
             }
-            return false;
-            //switch (newEquipment.wearingStyle)
-            //{
-            //    case WearingStyle.head:
-            //        headgear = newEquipment;
-            //        break;
-            //    case WearingStyle.body:
-            //        suit = newEquipment;
-            //        break;
-            //    case WearingStyle.feet:
-            //        footwear = newEquipment;
-            //        break;
-            //    case WearingStyle.hands:
-            //        if (CheckFreeHands() >= newEquipment.hands)
-            //        {
-            //            for (int i = 0; i <= newEquipment.hands; i++)
-            //            {
-
-            //            }
-            //        }
-                    
-            //        break;
-            //}
+            return false;      
         } 
        
-        private int CheckFreeHands()
-        {
-            int freeHands = 0;
-            foreach(Equipment hand in hands)
-            {
-                freeHands++;
-            }
-            return freeHands;
-        }
+        //private int CheckFreeHands()
+        //{
+        //    int freeHands = 0;
+        //    foreach(Equipment hand in hands)
+        //    {
+        //        freeHands++;
+        //    }
+        //    return freeHands;
+        //}
 
     }
 }

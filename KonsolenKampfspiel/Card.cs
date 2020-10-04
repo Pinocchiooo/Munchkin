@@ -69,7 +69,7 @@ namespace KonsolenKampfspiel
             return cards;
         }
 
-        static public List<Card> readTreasureCards()
+        static public List<Card> ReadTreasureCards()
         {
             XmlDocument doc = new XmlDocument();
             doc.Load("..\\..\\..\\TreasureCards.xml");
@@ -174,6 +174,74 @@ namespace KonsolenKampfspiel
                                 {
                                     Card headgear = new Equipment(headName, headBoni, head, headJewel);
                                     cards.Add(headgear);
+                                }
+                                else
+                                {
+                                    throw new System.Exception("Die XML Datei konnte nicht ordnungsgemäß eingelesen werden. Bitte überprüfe, ob die XML datei richtige Werte führt.");
+                                }
+                                break;
+                            case "Other":
+                                WearingStyle other = WearingStyle.other;
+                                string otherName = "";
+                                int otherBoni = 0;
+                                int otherJewel = 0;
+                                foreach (XmlNode grandson in child)
+                                {
+                                    switch (grandson.Name)
+                                    {
+                                        case "Name":
+                                            otherName = grandson.InnerText;
+                                            break;
+                                        case "Boni":
+                                            otherBoni = Convert.ToInt32(grandson.InnerText);
+                                            break;
+                                        case "Jewel":
+                                            otherJewel = Convert.ToInt32(grandson.InnerText);
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                }
+                                if (otherName != "" && otherBoni != 0)
+                                {
+                                    Card headgear = new Equipment(otherName, otherBoni, other, otherJewel);
+                                    cards.Add(headgear);
+                                }
+                                else
+                                {
+                                    throw new System.Exception("Die XML Datei konnte nicht ordnungsgemäß eingelesen werden. Bitte überprüfe, ob die XML datei richtige Werte führt.");
+                                }
+                                break;
+                            case "Hand":
+                                WearingStyle hands = WearingStyle.hands;
+                                string handName = "";
+                                int handBoni = 0;
+                                int necessaryHands = 0;
+                                int handJewel = 0;
+                                foreach (XmlNode grandson in child)
+                                {
+                                    switch (grandson.Name)
+                                    {
+                                        case "Name":
+                                            handName = grandson.InnerText;
+                                            break;
+                                        case "Boni":
+                                            handBoni = Convert.ToInt32(grandson.InnerText);
+                                            break;
+                                        case "Hands":
+                                            necessaryHands = Convert.ToInt32(grandson.InnerText);
+                                            break;
+                                        case "Jewel":
+                                            handJewel = Convert.ToInt32(grandson.InnerText);
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                }
+                                if (handName != "" && handBoni != 0 && necessaryHands != 0)
+                                {
+                                    Card handStuff = new HandEquipment(handName, handBoni, hands, handJewel, necessaryHands);
+                                    cards.Add(handStuff);
                                 }
                                 else
                                 {

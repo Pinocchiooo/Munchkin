@@ -14,7 +14,7 @@ namespace KonsolenKampfspiel
 
         static public void NewGame() {
             List<Card> doorCards = Card.readDoorCards();
-            List<Card> treasureCards = Card.readTreasureCards();
+            List<Card> treasureCards = Card.ReadTreasureCards();
             Card.Shuffle(treasureCards);
             Card.Shuffle(doorCards);
             Player player = Salutation();
@@ -24,7 +24,7 @@ namespace KonsolenKampfspiel
         static Player Salutation()
         {
             Console.Title = "Munchkin";
-            Console.WriteLine("Willkommen Knirps,\nEs sind viele Monster unterwegs. Stelle dich der Herausforderung und erlange als ertster die 10. Stufe indem sie besiegst.");
+            Console.WriteLine("Willkommen Knirps,\nEs sind viele Monster unterwegs. Stelle dich der Herausforderung und erlange als Erster die 10. Stufe indem du sie besiegst.");
 
             Console.WriteLine("\nWie ist dein Name?");
             String name = Console.ReadLine();

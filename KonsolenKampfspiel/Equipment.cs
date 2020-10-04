@@ -38,27 +38,32 @@ namespace KonsolenKampfspiel
     }
 
     //public class Suit : Equipment
-    //{
-    //    //public void Show()
-    //    //{
-    //    //    WriteTableHorizontally();
-    //    //    Console.Write("\t|Name: \t\t|" + name);
-    //    //    Console.SetCursorPosition(50, Console.CursorTop); Console.WriteLine("|");
-    //    //    Console.Write("\t|Boni: \t|" + boni);
-    //    //    Console.SetCursorPosition(50, Console.CursorTop); Console.WriteLine("|");
-    //    //    WriteTableHorizontally();
-    //    //}
-    //    public Suit(string name, int boni, int jewel) : base(name, boni, jewel)
-    //    {
-
-    //    }
-    //}
+  
 
     public class HandEquipment: Equipment
     {
+        public int hands { get; }
         public HandEquipment(string name, int boni, WearingStyle style, int jewel, int necessaryHands) : base (name, boni, style, jewel)
         {
+            hands = necessaryHands;
+        }
 
+        public override void Show(int cardID)
+        {
+            var table =
+            new ConsoleTable(new ConsoleTableOptions
+            {
+                Columns = new[] { "ID", cardID.ToString() },
+                EnableCount = false
+            });
+
+            table
+            .AddRow("Name", name)
+            .AddRow("Boni", boni)
+            .AddRow("Hände", hands)
+            .AddRow("Goldstücke", jewel);
+
+            table.Write(Format.Alternative);
         }
     }
 

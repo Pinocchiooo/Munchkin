@@ -22,7 +22,7 @@ namespace KonsolenKampfspiel
         }
 
         public override void Show(int cardID)
-        {
+        {                                                                                                
             var table =
             new ConsoleTable(new ConsoleTableOptions
             {

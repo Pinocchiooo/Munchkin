@@ -35,6 +35,7 @@ namespace KonsolenKampfspiel
             {
                 string keyInput = Console.ReadLine();
                 Console.Clear();
+
                 switch (keyInput)
                 {
                     case "h":
@@ -55,23 +56,54 @@ namespace KonsolenKampfspiel
                         }
                         else
                         {
-                            Equipment newEquipmentCard = handCards[Convert.ToInt32(input)] as Equipment;
-                            if (newEquipmentCard != null)
+                            try
                             {
-                                if (player.UseEquipment(newEquipmentCard))
+                                Equipment newEquipmentCard = handCards[Convert.ToInt32(input)] as Equipment;
+                                if (newEquipmentCard != null)
                                 {
-                                    DeleteHandCardAt(Convert.ToInt32(input));
+                                    if (player.UseEquipment(newEquipmentCard))
+                                    {
+                                        DeleteHandCardAt(Convert.ToInt32(input));
+                                    }
+                                    player.ShowEquipment();
                                 }
-                                player.ShowEquipment();
-                            }
-                            else
+                                else
+                                {
+                                    Console.WriteLine("Dies ist leider nicht möglich, bitte vergewissere dich, dass du eine Rüstungskarte ausgewählt hast.");
+                                }
+                            } catch
                             {
-                                Console.WriteLine("Dies ist leider nicht möglich, bitte vergewissere dich, dass du eine Rüstungskarte ausgewählt hast.");
+                                Console.Clear();
+                                ShowHelp();
                             }
                         }
                         break;
-                    case "d":
-                        //TODO Karten wegwerfen
+                    case "v":
+                        Console.WriteLine("Gebe den Index aller Karten, die du verkaufen möchtest kommagetrennt an. z.B. [1,5,4]");
+                        try
+                        {
+                            int[] indexInput = Console.ReadLine().Split(',').Select(int.Parse).ToArray();
+
+                            int jewels = 0;
+                            var indexe = indexInput.OrderByDescending(s => s);
+                            //TODO: Check if each number is maximum user one time
+                            foreach (int index in indexe)
+                            {
+                                Equipment card = handCards[index] as Equipment;
+                                jewels += card.jewel;
+                                handCards.RemoveAt(index);
+                            }
+                            int increase = Convert.ToInt32(jewels / 1000);
+                            player.IncreaseLevel(increase);
+                            Console.Clear();
+                            Console.WriteLine("Dein Equipment liegt nun auf dem Marktplatz. Die dafür erhaltenen Goldstücke: " + jewels + "hast du gegen " + increase + "Stufe(n) eingetauscht.");
+                        }
+                        catch
+                        {
+                            Console.WriteLine("Die angegebenen Indexe waren nicht alle als Equipment zu erkennen.");
+                            ShowHelp();
+                            break;
+                        }
                         break;
                     case "s":
                         Console.Clear();
@@ -88,6 +120,7 @@ namespace KonsolenKampfspiel
                         ShowHelp();
                         break;
                 }
+                Console.Write("\n\nWas Möchtest du tun? : ");
             } while (!finish);
         }
 
@@ -95,7 +128,7 @@ namespace KonsolenKampfspiel
         {
             Console.WriteLine("Um dir deine Handkarten anzusehen drücke einfach \"k\" [k]");
             Console.WriteLine("Eine Rüstungskarte anwenden/ auswechseln [r]");
-            Console.WriteLine("Karten kannst du mit [d] wegwerfen");
+            Console.WriteLine("Karten verkaufen (pro 1000 Goldstücke erhälst du eine Stufe.) [v]");
             Console.WriteLine("Wie stark bin ich? [s]");
             Console.WriteLine("Welches Level habe ich? [l]");
             Console.WriteLine("Wenn du nicht mehr weißt, wie du steuern kannst, lass dir gerne helfen [h]");
@@ -116,6 +149,9 @@ namespace KonsolenKampfspiel
                     Monster monster = doorcard as Monster;
                     if (monster != null)
                     {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Ein Monster greift dich an.");
+                        Console.ForegroundColor = ConsoleColor.White;
                         monster.Show(0);
                         Console.WriteLine("Deine Kampfkraft ist: " + player.Strenght);
                         Console.WriteLine("Möchtest du gegen das Monster antreten [1] oder lieber schnell weglaufen [2]?");
@@ -126,7 +162,7 @@ namespace KonsolenKampfspiel
                             {
                                 Console.WriteLine("Du hast das Monster besiegt!");
                                 TakeTreasureCard(monster.treasure);
-                                player.IncreaseLevel();
+                                player.IncreaseLevel(monster.increasment);
                                 ShowHandCards();
                             }
                             else
@@ -144,8 +180,8 @@ namespace KonsolenKampfspiel
                     else
                     {
                         handCards.Add(doorcard);
-                        Console.Write("Möchtest du gegen ein Monster aus deinen Handkarten kämpfen? [y/n]");
-                        if (Console.ReadLine() == "y")
+                        Console.Write("Möchtest du gegen ein Monster aus deinen Handkarten kämpfen? [j/n]");
+                        if (Console.ReadLine() == "j")
                         {
                             //TODO
                         }
@@ -180,9 +216,10 @@ namespace KonsolenKampfspiel
 
         void GameOver()
         {
-            Console.WriteLine("Möchtest du es nochmal versuchen? [y/n]");
-            if (Console.ReadLine() == "y")
+            Console.WriteLine("Möchtest du es nochmal versuchen? [j/n]");
+            if (Console.ReadLine() == "j")
             {
+                Console.Clear();
                 Preparation.NewGame();
             } else
             {
