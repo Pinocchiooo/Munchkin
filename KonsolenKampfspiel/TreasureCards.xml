@@ -4,22 +4,107 @@
     <Suit>
       <Name>Sexy Lederrüstung</Name>
       <Boni>1</Boni>
+      <Jewel>200</Jewel>
     </Suit>
     <Suit>
       <Name>Flammende Rüstung</Name>
       <Boni>2</Boni>
+      <Jewel>400</Jewel>
     </Suit>
     <Suit>
       <Name>Elasthan Kettenhemd</Name>
       <Boni>3</Boni>
+      <Jewel>500</Jewel>
     </Suit>
     <Suit>
       <Name>Schleimige Rüstung</Name>
       <Boni>1</Boni>
+      <Jewel>200</Jewel>
     </Suit>
     <Suit>
       <Name>PappTellerRüstung</Name>
       <Boni>1</Boni>
+      <Jewel>300</Jewel>
     </Suit>
+    <Hand>
+      <Name>Menschliches Schutzschild</Name>
+      <Boni>2</Boni>
+      <Hands>1</Hands>
+      <Size>small</Size>
+      <Jewel>500</Jewel>
+    </Hand>
+    <Hand>
+      <Name>Vorschlaghammer des Verdreschens</Name>
+      <Boni>5</Boni>
+      <Hands>2</Hands>
+      <Size>big</Size>
+      <Jewel>600</Jewel>
+    </Hand>
+    <Hand>
+      <Name>Kettensäge der blutigen Zerstückelung</Name>
+      <Boni>3</Boni>
+      <Hands>2</Hands>
+      <Size>big</Size>
+      <Jewel>600</Jewel>
+    </Hand>
+    <Hand>
+      <Name>Stange 11-Fuss</Name>
+      <Boni>1</Boni>
+      <Hands>2</Hands>
+      <Size>small</Size>
+      <Jewel>200</Jewel>
+    </Hand>
+    <Hand>
+      <Name>Riesiger Fels</Name>
+      <Boni>3</Boni>
+      <Hands>2</Hands>
+      <Size>big</Size>
+      <Jewel>0</Jewel>
+    </Hand>
+    <Head>
+      <Name>Cooles Tuch für harte Kerle</Name>
+      <Boni>3</Boni>
+      <Jewel>400</Jewel>
+    </Head>
+    <Head>
+      <Name>Gruselhelm</Name>
+      <Boni>2</Boni>
+      <Jewel>400</Jewel>
+    </Head>
+    <Head>
+      <Name>Unsichtbarer Helm</Name>
+      <Boni>2</Boni>
+      <Jewel>500</Jewel>
+    </Head>
+    <Other>
+      <Name>Wirklich beeindruckender Titel</Name>
+      <Boni>3</Boni>
+      <Jewel>0</Jewel>
+    </Other>
+    <Other>
+      <Name>Ratte am Spieß</Name>
+      <Boni>1</Boni>
+      <Jewel>0</Jewel>
+    </Other>
+    <Other>
+      <Name>Singendes und Tanzendes Schwert</Name>
+      <Boni>2</Boni>
+      <Jewel>400</Jewel>
+    </Other>
+    <Other>
+      <Name>Strumpfhose der Riesenstärke</Name>
+      <Boni>3</Boni>
+      <Jewel>600</Jewel>
+    </Other>
+    <Feet>
+      <Name>Bärenfüße</Name>
+      <Boni>2</Boni>
+      <Jewel>500</Jewel>
+    </Feet>
+    <Feet>
+      <Name>Arschtritt-Stiefel</Name>
+      <Boni>2</Boni>
+      <Jewel>400</Jewel>
+    </Feet> 
   </Equipment>
 </cards>

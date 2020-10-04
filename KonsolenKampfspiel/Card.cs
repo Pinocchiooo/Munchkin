@@ -82,10 +82,13 @@ namespace KonsolenKampfspiel
                 {
                     foreach (XmlNode child in node.ChildNodes)
                     {
-                        if (child.Name == "Suit")
+                        switch(child.Name)
                         {
+                        case "Suit":
+                            WearingStyle body = WearingStyle.body;
                             string suitName = "";
                             int suitBoni = 0;
+                            int suitJewel = 0;
                             foreach (XmlNode grandson in child)
                             {
                                 switch (grandson.Name)
@@ -94,23 +97,93 @@ namespace KonsolenKampfspiel
                                         suitName = grandson.InnerText;
                                         break;
                                     case "Boni":
-                                        //Console.WriteLine(grandson.)
                                         suitBoni = Convert.ToInt32(grandson.InnerText);
+                                        break;
+                                    case "Jewel":
+                                        suitJewel = Convert.ToInt32(grandson.InnerText);
                                         break;
                                     default:
                                         break;
                                 }
                             }
-                            if (suitName != "" && suitBoni != 0)
+                            if (suitName != "" && suitBoni != 0 && suitJewel != 0)
                             {
-                                Card suit = new Suit(suitName, suitBoni);
+                                Card suit = new Equipment(suitName, suitBoni, body, suitJewel);
                                 cards.Add(suit);
                             }
                             else
                             {
                                 throw new System.Exception("Die XML Datei konnte nicht ordnungsgemäß eingelesen werden. Bitte überprüfe, ob die XML datei richtige Werte führt.");
                             }
-                        }   
+                            break;
+                         case "Feet":
+                                WearingStyle feet = WearingStyle.feet;
+                                string feetName = "";
+                                int feetBoni = 0;
+                                int feetJewel = 0;
+                                foreach (XmlNode grandson in child)
+                                {
+                                    switch (grandson.Name)
+                                    {
+                                        case "Name":
+                                            feetName = grandson.InnerText;
+                                            break;
+                                        case "Boni":
+                                            feetBoni = Convert.ToInt32(grandson.InnerText);
+                                            break;
+                                        case "Jewel":
+                                            feetJewel = Convert.ToInt32(grandson.InnerText);
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                }
+                                if (feetName != "" && feetBoni != 0 && feetJewel != 0)
+                                {
+                                    Card footGear = new Equipment(feetName, feetBoni, feet, feetJewel);
+                                    cards.Add(footGear);
+                                }
+                                else
+                                {
+                                    throw new System.Exception("Die XML Datei konnte nicht ordnungsgemäß eingelesen werden. Bitte überprüfe, ob die XML datei richtige Werte führt.");
+                                }
+                                break;
+                            case "Head":
+                                WearingStyle head = WearingStyle.head;
+                                string headName = "";
+                                int headBoni = 0;
+                                int headJewel = 0;
+                                foreach (XmlNode grandson in child)
+                                {
+                                    switch (grandson.Name)
+                                    {
+                                        case "Name":
+                                            headName = grandson.InnerText;
+                                            break;
+                                        case "Boni":
+                                            headBoni = Convert.ToInt32(grandson.InnerText);
+                                            break;
+                                        case "Jewel":
+                                            headJewel = Convert.ToInt32(grandson.InnerText);
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                }
+                                if (headName != "" && headBoni != 0 && headJewel != 0)
+                                {
+                                    Card headgear = new Equipment(headName, headBoni, head, headJewel);
+                                    cards.Add(headgear);
+                                }
+                                else
+                                {
+                                    throw new System.Exception("Die XML Datei konnte nicht ordnungsgemäß eingelesen werden. Bitte überprüfe, ob die XML datei richtige Werte führt.");
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+
                     }
                 }
             }

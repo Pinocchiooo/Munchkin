@@ -127,28 +127,129 @@ namespace KonsolenKampfspiel
         }
         public bool UseEquipment(Equipment newEquipment)
         {
-            Suit suit = newEquipment as Suit;
-            if (suit != null) {
-                if (this.suit == null)
-                {
-                    this.suit = suit;
-                    this.equipmentBoni += suit.boni;
-                    return true;
-                } else
-                {
-                    Console.WriteLine("Möchtest du den vorhandenen Rüstungsgegenstand austauschen? [y/n]");
-                    this.suit.Show();
-                    if (Console.ReadLine() == "y")
+            switch (newEquipment.type) {
+
+                case WearingStyle.body:
+                    if (this.suit == null)
                     {
-                        this.equipmentBoni -= this.suit.boni;
-                        this.suit = suit;
+                        this.suit = newEquipment;
                         this.equipmentBoni += suit.boni;
                         return true;
-                    } else
-                    {
-                        return false;
                     }
-                }
+                    else
+                    {
+                        Console.WriteLine("Möchtest du den vorhandenen Rüstungsgegenstand austauschen? [y/n]");
+                        this.suit.Show();
+                        if (Console.ReadLine() == "y")
+                        {
+                            this.equipmentBoni -= this.suit.boni;
+                            this.suit = newEquipment;
+                            this.equipmentBoni += suit.boni;
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                case WearingStyle.feet:
+                    {
+                        if (this.footwear == null)
+                        {
+                            this.footwear = newEquipment;
+                            this.equipmentBoni += footwear.boni;
+                            return true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Möchtest du den vorhandenen Rüstungsgegenstand austauschen? [y/n]");
+                            this.footwear.Show();
+                            if (Console.ReadLine() == "y")
+                            {
+                                this.equipmentBoni -= this.footwear.boni;
+                                this.footwear = newEquipment;
+                                this.equipmentBoni += footwear.boni;
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                    
+                case WearingStyle.head:
+                {
+                        if (this.headgear == null)
+                        {
+                            this.headgear = newEquipment;
+                            this.equipmentBoni += headgear.boni;
+                            return true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Möchtest du den vorhandenen Rüstungsgegenstand austauschen? [y/n]");
+                            this.headgear.Show();
+                            if (Console.ReadLine() == "y")
+                            {
+                                this.equipmentBoni -= this.headgear.boni;
+                                this.headgear = newEquipment;
+                                this.equipmentBoni += headgear.boni;
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                //case WearingStyle.other:
+                //    if (this.others == null)
+                //    {
+                //        this.others = newEquipment;
+                //        this.equipmentBoni += others.boni;
+                //        return true;
+                //    }
+                //    else
+                //    {
+                //        Console.WriteLine("Möchtest du den vorhandenen Rüstungsgegenstand austauschen? [y/n]");
+                //        this.suit.Show();
+                //        if (Console.ReadLine() == "y")
+                //        {
+                //            this.equipmentBoni -= this.suit.boni;
+                //            this.suit = newEquipment;
+                //            this.equipmentBoni += suit.boni;
+                //            return true;
+                //        }
+                //        else
+                //        {
+                //            return false;
+                //        }
+                //    }
+                //case WearingStyle.hands:
+                //    if (this.suit == null)
+                //    {
+                //        this.suit = newEquipment;
+                //        this.equipmentBoni += suit.boni;
+                //        return true;
+                //    }
+                //    else
+                //    {
+                //        Console.WriteLine("Möchtest du den vorhandenen Rüstungsgegenstand austauschen? [y/n]");
+                //        this.suit.Show();
+                //        if (Console.ReadLine() == "y")
+                //        {
+                //            this.equipmentBoni -= this.suit.boni;
+                //            this.suit = newEquipment;
+                //            this.equipmentBoni += suit.boni;
+                //            return true;
+                //        }
+                //        else
+                //        {
+                //            return false;
+                //        }
+                //    }
+
             }
             return false;
             //switch (newEquipment.wearingStyle)
@@ -174,6 +275,7 @@ namespace KonsolenKampfspiel
             //        break;
             //}
         } 
+       
         private int CheckFreeHands()
         {
             int freeHands = 0;
