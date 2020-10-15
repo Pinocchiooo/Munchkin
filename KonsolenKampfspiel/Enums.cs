@@ -4,6 +4,7 @@ using System.Text;
 
 namespace KonsolenKampfspiel
 {
+    //TODO: Use Categories
     public enum Category
     {
         Mensch,
@@ -12,6 +13,8 @@ namespace KonsolenKampfspiel
         Prister,
         Waldlaeufer
     }
+
+    //TODO: Use Races
     public enum Race
     {
         Mensch,
@@ -21,6 +24,8 @@ namespace KonsolenKampfspiel
         Gnom,
         Halbling
     }
+
+    //TODO: Use Gender
     public enum Gender
     {
         female,

@@ -7,6 +7,8 @@ namespace KonsolenKampfspiel
 {
     public abstract class Card
     {
+        #region Methoden - static public
+        // diese Methoden sind aufrufbar, ohne eine Instanz dieser Klasse zu nutzen.
         static public List<Card> readDoorCards()
         {
             XmlDocument doc = new XmlDocument();
@@ -275,10 +277,9 @@ namespace KonsolenKampfspiel
             return cards;
         }
 
-        public abstract void Show(int cardID);
         static public void Shuffle(List<Card> cards)
-        {  
- //muss keine Liste zurückgeben, da eine Liste ein Referenztyp ist
+        {
+            //muss keine Liste zurückgeben, da eine Liste ein Referenztyp ist
             Random random = new Random();
 
             for (int t = 0; t < cards.Count; t++)
@@ -289,5 +290,14 @@ namespace KonsolenKampfspiel
                 cards[r] = tmp;
             }
         }
+#endregion
+
+        #region abstrakte Methoden
+
+        //Die überladete Methode Show() muss in allen Subklassen definiert werden
+        public abstract void Show(int cardID);
+        public abstract void Show();
+
+        #endregion
     }
 }

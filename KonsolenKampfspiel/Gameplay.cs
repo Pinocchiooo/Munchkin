@@ -7,13 +7,15 @@ namespace KonsolenKampfspiel
 {
     class Gameplay
     {
+        #region Variablen
         Player player;
         List<Card> treasureCards;
         List<Card> doorcards;
         List<Card> handCards;
         Random rnd = new Random();
+        #endregion
 
-
+        #region Konstruktor
         public Gameplay(Player player, List<Card> treasureCards, List<Card> doorcards)
         {
             this.player = player;
@@ -26,8 +28,23 @@ namespace KonsolenKampfspiel
             CheckingForUserInput();
             PlayerTurn();
         }
+        #endregion
 
-        
+        #region Methode - public
+        public static void ShowHelp()
+        {
+            Console.WriteLine("Um dir deine Handkarten anzusehen drücke einfach \"k\" [k]");
+            Console.WriteLine("Eine Equipmentkarte anzuwenden/ auszuwechseln [e]");
+            Console.WriteLine("Karten verkaufen (pro 1000 Goldstücke erhälst du eine Stufe.) [v]");
+            Console.WriteLine("Wie stark bin ich? [s]");
+            Console.WriteLine("Welches Level habe ich? [l]");
+            Console.WriteLine("Wenn du nicht mehr weißt, wie du steuern kannst, lass dir gerne helfen [h]");
+            Console.WriteLine("Mit [f] geht das Spiel weiter");
+        }
+        #endregion
+
+        #region Methoden - private
+        //Diese Methode lässt den User zwischen in ShowHelp() beschriebenen Interaktionen wählen, sie wird solange ausgeführt, bis das Programm endet.
         private void CheckingForUserInput()
         {
             bool finish = false;
@@ -45,71 +62,10 @@ namespace KonsolenKampfspiel
                         ShowHandCards();
                         break;
                     case "e":
-                        Console.Clear();
-                        ShowTreasureCards();
-                        player.ShowEquipment();
-                        Console.ForegroundColor = ConsoleColor.Magenta;
-                        Console.WriteLine("Wenn du eine Karte anwenden möchtest, dann gib einfach den Kartenindex an, anonsten drücke [f]");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        String input = Console.ReadLine();
-                        if (input == "f")
-                        {
-                            break;
-                        }
-                        else
-                        {
-                            try
-                            {
-                                Equipment newEquipmentCard = handCards[Convert.ToInt32(input)] as Equipment;
-                                if (newEquipmentCard != null)
-                                {
-                                    if (player.UseEquipment(newEquipmentCard))
-                                    {
-                                        DeleteHandCardAt(Convert.ToInt32(input));
-                                    }
-                                    Console.Clear();
-                                    player.ShowEquipment();
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Dies ist leider nicht möglich, bitte vergewissere dich, dass du eine Rüstungskarte ausgewählt hast.");
-                                }
-                            } catch
-                            {
-                                Console.Clear();
-                                ShowHelp();
-                            }
-                        }
+                        editEquipment();
                         break;
                     case "v":
-                        ShowTreasureCards();
-                        Console.ForegroundColor = ConsoleColor.Magenta;
-                        Console.WriteLine("Gebe den Index aller Karten, die du verkaufen möchtest, kommagetrennt an. z.B. [1,5,4]");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        try
-                        {
-                            int[] indexInput = Console.ReadLine().Split(',').Select(int.Parse).ToArray();
-
-                            int jewels = 0;
-                            var indexe = indexInput.OrderByDescending(s => s);
-                            //TODO: Check if each number is maximum user one time
-                            foreach (int index in indexe)
-                            {
-                                Equipment card = handCards[index] as Equipment;
-                                jewels += card.jewel;
-                                handCards.RemoveAt(index);
-                            }
-                            int increase = Convert.ToInt32(jewels / 1000);
-                            player.IncreaseLevel(increase);
-                            Console.Clear();
-                            Console.WriteLine("Dein Equipment liegt nun auf dem Marktplatz. Die dafür erhaltenen Goldstücke: " + jewels + " hast du gegen " + increase + " Stufe(n) eingetauscht.");
-                        }
-                        catch
-                        {
-                            Console.WriteLine("Die angegebenen Indexe waren nicht alle als Equipment zu erkennen.");
-                            ShowHelp();
-                            break;
-                        }
+                        sellEquipment();
                         break;
                     case "s":
                         Console.Clear();
@@ -129,18 +85,74 @@ namespace KonsolenKampfspiel
                 Console.Write("\n\nWas Möchtest du tun?  ");
             } while (!finish);
         }
-
-        public static void ShowHelp()
+        private void sellEquipment()
         {
-            Console.WriteLine("Um dir deine Handkarten anzusehen drücke einfach \"k\" [k]");
-            Console.WriteLine("Eine Equipmentkarte anzuwenden/ auszuwechseln [e]");
-            Console.WriteLine("Karten verkaufen (pro 1000 Goldstücke erhälst du eine Stufe.) [v]");
-            Console.WriteLine("Wie stark bin ich? [s]");
-            Console.WriteLine("Welches Level habe ich? [l]");
-            Console.WriteLine("Wenn du nicht mehr weißt, wie du steuern kannst, lass dir gerne helfen [h]");
-            Console.WriteLine("Mit [f] geht das Spiel weiter");
+            ShowTreasureCards();
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine("Gebe den Index aller Karten, die du verkaufen möchtest, kommagetrennt an. z.B. [1,5,4]");
+            Console.ForegroundColor = ConsoleColor.White;
+            try
+            {
+                int[] indexInput = Console.ReadLine().Split(',').Select(int.Parse).ToArray();
+
+                int jewels = 0;
+                var indexe = indexInput.OrderByDescending(s => s);
+                //TODO: Check if each number is maximum user one time
+                foreach (int index in indexe)
+                {
+                    Equipment card = handCards[index] as Equipment;
+                    jewels += card.jewel;
+                    handCards.RemoveAt(index);
+                }
+                int increase = Convert.ToInt32(jewels / 1000);
+                player.IncreaseLevel(increase);
+                Console.Clear();
+                Console.WriteLine("Dein Equipment liegt nun auf dem Marktplatz. Die dafür erhaltenen Goldstücke: " + jewels + " hast du gegen " + increase + " Stufe(n) eingetauscht.");
+            }
+            catch
+            {
+                Console.WriteLine("Die angegebenen Indexe waren nicht alle als Equipment zu erkennen.");
+                ShowHelp();
+            }
         }
-        void PlayerTurn()
+        private void editEquipment()
+        {
+            Console.Clear();
+            ShowTreasureCards();
+            player.ShowEquipment();
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine("Wenn du eine Karte anwenden möchtest, dann gib einfach den Kartenindex an, anonsten drücke [f]");
+            Console.ForegroundColor = ConsoleColor.White;
+            String input = Console.ReadLine();
+            if (input != "f")
+            {
+                try
+                {
+                    Equipment newEquipmentCard = handCards[Convert.ToInt32(input)] as Equipment;
+                    if (newEquipmentCard != null)
+                    {
+                        if (player.UseEquipment(newEquipmentCard))
+                        {
+                            DeleteHandCardAt(Convert.ToInt32(input));
+                        }
+                        Console.Clear();
+                        player.ShowEquipment();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Dies ist leider nicht möglich, bitte vergewissere dich, dass du eine Rüstungskarte ausgewählt hast.");
+                    }
+                }
+                catch
+                {
+                    Console.Clear();
+                    ShowHelp();
+                }
+            }
+        }
+
+        //Hier findet die Ziehung einer Türkarte statt, die im Falle eines Monsters einen Kampf einleiten, der mit Sieg, oder einem Weglaufversuch endet.
+        private void PlayerTurn()
         {
             do
             {
@@ -213,7 +225,7 @@ namespace KonsolenKampfspiel
             Environment.Exit(0);
         }
 
-        void RunAway(int speed)
+        private void RunAway(int speed)
         {
             int random = rnd.Next(1, 6);
             if (speed >= random)
@@ -229,7 +241,7 @@ namespace KonsolenKampfspiel
             }
         }
 
-        void GameOver()
+        private void GameOver()
         {
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("Möchtest du es nochmal versuchen? [j/n]");
@@ -244,6 +256,8 @@ namespace KonsolenKampfspiel
                 Environment.Exit(0);                
             }
         }
+
+        #region Kartenmanagement
 
         void DeleteHandCardAt(int cardID)
         {
@@ -309,5 +323,8 @@ namespace KonsolenKampfspiel
             ShowDoorCards();
             ShowTreasureCards();
         }
+        #endregion
+
+        #endregion
     }
 }

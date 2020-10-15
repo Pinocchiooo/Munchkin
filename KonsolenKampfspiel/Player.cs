@@ -6,6 +6,7 @@ namespace KonsolenKampfspiel
 {       
     public class Player
     {
+        #region Konstruktor
         public Player(String name = "Munchkin", Gender gender = Gender.male)
         {
             this.name = name;
@@ -16,17 +17,28 @@ namespace KonsolenKampfspiel
             hands = new List<Equipment>();
             others = new List<Equipment>();
         }
+        #endregion
 
+        #region Variablen
+        //Private Variablen
         string name;
         Gender gender;
-
         Category category;
         Race race;
         int speed = 4;  //TODO: shoes could help you to run 
         int equipmentBoni;
         int numberOfHands = 2;
         int handsInUse = 0;
+        int level;
 
+        Equipment headgear;
+        Equipment footwear;
+        List<Equipment> hands;
+        Equipment suit;
+        List<Equipment> others;
+
+
+        //Datenkapselung: getter für den Gebrauch aus anderen Klassen
         public int Level
         {
             get
@@ -48,14 +60,9 @@ namespace KonsolenKampfspiel
                 return level + equipmentBoni;
             }
         }
-        int level;
+        #endregion
 
-        Equipment headgear;
-        Equipment footwear;
-        List<Equipment> hands;
-        Equipment suit;
-        List<Equipment> others;
-
+        #region Methoden - public
         public void IncreaseLevel(int count)
         {
             for (int i = 0; i < count; i++)
@@ -241,6 +248,7 @@ namespace KonsolenKampfspiel
                     return false;
             }
             return false;      
-        } 
+        }
+        #endregion
     }
 }
