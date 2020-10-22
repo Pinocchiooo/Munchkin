@@ -1,0 +1,139 @@
+<Project>
+  <Name>Munchkin</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Munchkin</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>Monster</Name>
+        <Access>Public</Access>
+        <Location left="602" top="666" />
+        <Size width="347" height="230" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public Monster(string name, int level, int trasure, int increasement)</Member>
+        <Member type="Property">public string Name { get; }</Member>
+        <Member type="Property">public int Level { get; }</Member>
+        <Member type="Property">public int treasure { get; }</Member>
+        <Member type="Property">public int increasment { get; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Card</Name>
+        <Access>Public</Access>
+        <Location left="496" top="391" />
+        <Size width="216" height="159" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public static List&lt;Card&gt; ReadDoorCards()</Member>
+        <Member type="Method">public static List&lt;Card&gt; ReadTreasureCards()</Member>
+        <Member type="Method">public abstract void Show(int CardID)</Member>
+        <Member type="Method">public abstract void Show()</Member>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Player</Name>
+        <Access>Public</Access>
+        <Location left="786" top="124" />
+        <Size width="297" height="400" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">List&lt;Equipment&gt; others</Member>
+        <Member type="Field">List&lt;Equipment&gt; hands</Member>
+        <Member type="Field">Equipment suit</Member>
+        <Member type="Field">Equipment headgear</Member>
+        <Member type="Field">Equipment footwear</Member>
+        <Member type="Field">int speed = 4</Member>
+        <Member type="Field">int numberOfHands = 2</Member>
+        <Member type="Field">int handsInUse = 0</Member>
+        <Member type="Field">string name</Member>
+        <Member type="Field">Gender gender</Member>
+        <Member type="Field">Category category</Member>
+        <Member type="Field">int Level</Member>
+        <Member type="Constructor">public Player(string name = munchkin, Gender gender = Gender.male)</Member>
+        <Member type="Method">public bool UseEquipment(Equipment newEquipment)</Member>
+        <Member type="Method">public void ShowEquipment()</Member>
+        <Member type="Method">public void IncreaseLevel(int count)</Member>
+        <Member type="Property">public int Speed { get; }</Member>
+        <Member type="Property">public int Strenght { get; }</Member>
+        <Member type="Property">public int Level { get; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Preparation</Name>
+        <Access>Public</Access>
+        <Location left="39" top="155" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Gameplay</Name>
+        <Access>Public</Access>
+        <Location left="282" top="155" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Equipment</Name>
+        <Access>Public</Access>
+        <Location left="100" top="648" />
+        <Size width="450" height="189" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public int Name { get; }</Member>
+        <Member type="Property">public int Boni { get; }</Member>
+        <Member type="Property">public int TypeToShow { get; }</Member>
+        <Member type="Property">public WearingStyle Type { get; }</Member>
+        <Member type="Property">public int Jewel { get; }</Member>
+        <Member type="Constructor">public Equipment(string name, int boni, WearingStyle type, int jewel, string typeToShow)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>HandEquipment</Name>
+        <Access>Public</Access>
+        <Location left="349" top="926" />
+        <Size width="176" height="128" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public int Hands { get; }</Member>
+        <Member type="Constructor">public HandEquipment(string name, WearingStyle style, string typeToShow, int jewel, int necessaryhands)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Generalization" first="0" second="1">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="5" second="1">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="6" second="5">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="4" second="1">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="4" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="3" second="4">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>

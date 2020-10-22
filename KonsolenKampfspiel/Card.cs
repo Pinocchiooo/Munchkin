@@ -9,7 +9,7 @@ namespace KonsolenKampfspiel
     {
         #region Methoden - static public
         // diese Methoden sind aufrufbar, ohne eine Instanz dieser Klasse zu nutzen.
-        static public List<Card> readDoorCards()
+        static public List<Card> ReadDoorCards()
         {
             XmlDocument doc = new XmlDocument();
             doc.Load("..\\..\\..\\DoorCards.xml");

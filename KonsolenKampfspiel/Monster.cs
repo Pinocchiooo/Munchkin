@@ -8,20 +8,20 @@ namespace KonsolenKampfspiel
 {
     public class Monster: Card
     {
-        #region Variablen - public
-        public string name;
-        public int level;
-        public int treasure;
-        public int increasment;
+        #region  Eigenschaften - getter
+        public string Name { get; }
+        public int Level { get; }
+        public int Treasure { get; }
+        public int Increasment { get; }
         #endregion
 
         #region Konstruktor
         public Monster(string name, int level, int treasure, int increasment)
         {
-            this.name = name;
-            this.level = level;
-            this.treasure = treasure;
-            this.increasment = increasment;
+            this.Name = name;
+            this.Level = level;
+            this.Treasure = treasure;
+            this.Increasment = increasment;
         }
         #endregion
 
@@ -36,10 +36,10 @@ namespace KonsolenKampfspiel
             });
 
             table
-            .AddRow("Name", name)
-            .AddRow("Treasure", treasure)
-            .AddRow("Level", level)
-            .AddRow("Increasment", increasment);
+            .AddRow("Name", Name)
+            .AddRow("Treasure", Treasure)
+            .AddRow("Level", Level)
+            .AddRow("Increasment", Increasment);
 
             table.Write(Format.Alternative);
         }
@@ -49,14 +49,14 @@ namespace KonsolenKampfspiel
             var table =
             new ConsoleTable(new ConsoleTableOptions
             {
-                Columns = new[] { "Name", name },
+                Columns = new[] { "Name", Name },
                 EnableCount = false
             });
 
             table
-            .AddRow("Treasure", treasure)
-            .AddRow("Level", level)
-            .AddRow("Increasment", increasment);
+            .AddRow("Treasure", Treasure)
+            .AddRow("Level", Level)
+            .AddRow("Increasment", Increasment);
 
             table.Write(Format.Alternative);
         }
@@ -64,12 +64,13 @@ namespace KonsolenKampfspiel
         #endregion
 
         #region Methode - public
-        public bool battle(int strength, Potion[] potion = null)
+        public bool Battle(int strength, Potion[] potion = null)
         {
-            if (strength > level)
+            if (strength > Level)
             {
                 return true;
-            } else
+            }
+            else
             {
                 return false;
             }

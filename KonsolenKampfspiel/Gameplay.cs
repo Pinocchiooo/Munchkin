@@ -101,7 +101,7 @@ namespace KonsolenKampfspiel
                 foreach (int index in indexe)
                 {
                     Equipment card = handCards[index] as Equipment;
-                    jewels += card.jewel;
+                    jewels += card.Jewel;
                     handCards.RemoveAt(index);
                 }
                 int increase = Convert.ToInt32(jewels / 1000);
@@ -179,11 +179,11 @@ namespace KonsolenKampfspiel
                         string input = Console.ReadLine();
                         if (input == "1")
                         {
-                            if (monster.battle(player.Strenght))
+                            if (monster.Battle(player.Strenght))
                             {
                                 Console.WriteLine("Du hast das Monster besiegt!");
-                                TakeTreasureCard(monster.treasure);
-                                player.IncreaseLevel(monster.increasment);
+                                TakeTreasureCard(monster.Treasure);
+                                player.IncreaseLevel(monster.Increasment);
                                 ShowHandCards();
                                 Console.WriteLine("Bitte eine Taste drücken.");
                                 Console.ReadKey();

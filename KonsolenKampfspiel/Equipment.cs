@@ -1,27 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using ConsoleTables;
+﻿using ConsoleTables;
+using System;
 
 namespace KonsolenKampfspiel
 {
     public class Equipment : Card
     {
-        #region Variablen mit Eigenschaften - getter
-        public string name { get; }
-        public int boni { get; }
-        public string typeToShow { get; }
-        public WearingStyle type { get; }
-        public int jewel { get; }
+        #region Eigenschaften - getter
+        public string Name { get; }
+        public int Boni { get; }
+        public string TypeToShow { get; }
+        public WearingStyle Type { get; }
+        public int Jewel { get; }
 #endregion
 
         #region Konstruktor
         public Equipment(string name, int boni, WearingStyle type, int jewel, String typeToShow)
         {
-            this.typeToShow = typeToShow;
-            this.name = name;
-            this.boni = boni;
-            this.type = type;
-            this.jewel = jewel;
+            this.TypeToShow = typeToShow;
+            this.Name = name;
+            this.Boni = boni;
+            this.Type = type;
+            this.Jewel = jewel;
         }
         #endregion
 
@@ -36,10 +35,10 @@ namespace KonsolenKampfspiel
             });
 
             table
-            .AddRow("Typ", typeToShow)
-            .AddRow("Name", name)
-            .AddRow("Boni", boni)
-            .AddRow("Goldstücke", jewel);
+            .AddRow("Typ", TypeToShow)
+            .AddRow("Name", Name)
+            .AddRow("Boni", Boni)
+            .AddRow("Goldstücke", Jewel);
 
             table.Write(Format.Alternative);
         }
@@ -49,14 +48,14 @@ namespace KonsolenKampfspiel
             var table =
             new ConsoleTable(new ConsoleTableOptions
             {
-                Columns = new[] { "Typ", typeToShow },
+                Columns = new[] { "Typ", TypeToShow },
                 EnableCount = false
             });
 
             table
-            .AddRow("Name", name)
-            .AddRow("Boni", boni)
-            .AddRow("Goldstücke", jewel);
+            .AddRow("Name", Name)
+            .AddRow("Boni", Boni)
+            .AddRow("Goldstücke", Jewel);
 
             table.Write(Format.Alternative);
         }
@@ -67,13 +66,13 @@ namespace KonsolenKampfspiel
     {
         // Diese Klasse erweitert die Equipmentklasse mit der Variablen "hands". 
         #region Variable
-        public int hands { get; }
+        public int Hands { get; }
         #endregion
 
         #region Konstruktor
         public HandEquipment(string name, int boni, WearingStyle style, string typeToShow, int jewel, int necessaryHands) : base (name, boni, style, jewel, typeToShow)
         {
-            hands = necessaryHands;
+            Hands = necessaryHands;
         }
         #endregion
 
@@ -88,11 +87,11 @@ namespace KonsolenKampfspiel
             });
 
             table
-            .AddRow("Typ", typeToShow)
-            .AddRow("Name", name)
-            .AddRow("Boni", boni)
-            .AddRow("Hände", hands)
-            .AddRow("Goldstücke", jewel);
+            .AddRow("Typ", TypeToShow)
+            .AddRow("Name", Name)
+            .AddRow("Boni", Boni)
+            .AddRow("Hände", Hands)
+            .AddRow("Goldstücke", Jewel);
 
             table.Write(Format.Alternative);
         }
@@ -101,15 +100,15 @@ namespace KonsolenKampfspiel
             var table =
             new ConsoleTable(new ConsoleTableOptions
             {
-                Columns = new[] { "Typ", typeToShow },
+                Columns = new[] { "Typ", TypeToShow },
                 EnableCount = false
             });
 
             table
-            .AddRow("Name", name)
-            .AddRow("Boni", boni)
-            .AddRow("Hände", hands)
-            .AddRow("Goldstücke", jewel);
+            .AddRow("Name", Name)
+            .AddRow("Boni", Boni)
+            .AddRow("Hände", Hands)
+            .AddRow("Goldstücke", Jewel);
 
             table.Write(Format.Alternative);
         }

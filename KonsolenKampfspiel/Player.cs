@@ -21,21 +21,21 @@ namespace KonsolenKampfspiel
 
         #region Variablen
         //Private Variablen
-        string name;
-        Gender gender;
-        Category category;
-        Race race;
-        int speed = 4;  //TODO: shoes could help you to run 
-        int equipmentBoni;
-        int numberOfHands = 2;
-        int handsInUse = 0;
-        int level;
+        private string name;
+        private Gender gender;
+        private Category category;
+        private Race race;
+        private int speed = 4;  //TODO: shoes could help you to run 
+        private int equipmentBoni;
+        private int numberOfHands = 2;
+        private int handsInUse = 0;
+        private int level;
 
-        Equipment headgear;
-        Equipment footwear;
-        List<Equipment> hands;
-        Equipment suit;
-        List<Equipment> others;
+        private Equipment headgear;
+        private Equipment footwear;
+        private List<Equipment> hands;
+        private Equipment suit;
+        private List<Equipment> others;
 
 
         //Datenkapselung: getter für den Gebrauch aus anderen Klassen
@@ -132,13 +132,13 @@ namespace KonsolenKampfspiel
         }
         public bool UseEquipment(Equipment newEquipment)
         {
-            switch (newEquipment.type) {
+            switch (newEquipment.Type) {
 
                 case WearingStyle.body:
                     if (this.suit == null)
                     {
                         this.suit = newEquipment;
-                        this.equipmentBoni += suit.boni;
+                        this.equipmentBoni += suit.Boni;
                         return true;
                     }
                     else
@@ -150,9 +150,9 @@ namespace KonsolenKampfspiel
                         this.suit.Show();
                         if (Console.ReadLine() == "j")
                         {
-                            this.equipmentBoni -= this.suit.boni;
+                            this.equipmentBoni -= this.suit.Boni;
                             this.suit = newEquipment;
-                            this.equipmentBoni += suit.boni;
+                            this.equipmentBoni += suit.Boni;
                             return true;
                         }
                         else
@@ -165,7 +165,7 @@ namespace KonsolenKampfspiel
                         if (this.footwear == null)
                         {
                             this.footwear = newEquipment;
-                            this.equipmentBoni += footwear.boni;
+                            this.equipmentBoni += footwear.Boni;
                             return true;
                         }
                         else
@@ -177,9 +177,9 @@ namespace KonsolenKampfspiel
                             this.footwear.Show();
                             if (Console.ReadLine() == "j")
                             {
-                                this.equipmentBoni -= this.footwear.boni;
+                                this.equipmentBoni -= this.footwear.Boni;
                                 this.footwear = newEquipment;
-                                this.equipmentBoni += footwear.boni;
+                                this.equipmentBoni += footwear.Boni;
                                 return true;
                             }
                             else
@@ -194,7 +194,7 @@ namespace KonsolenKampfspiel
                         if (this.headgear == null)
                         {
                             this.headgear = newEquipment;
-                            this.equipmentBoni += headgear.boni;
+                            this.equipmentBoni += headgear.Boni;
                             return true;
                         }
                         else
@@ -206,9 +206,9 @@ namespace KonsolenKampfspiel
                             this.headgear.Show();
                             if (Console.ReadLine() == "j")
                             {
-                                this.equipmentBoni -= this.headgear.boni;
+                                this.equipmentBoni -= this.headgear.Boni;
                                 this.headgear = newEquipment;
-                                this.equipmentBoni += headgear.boni;
+                                this.equipmentBoni += headgear.Boni;
                                 return true;
                             }
                             else
@@ -219,16 +219,16 @@ namespace KonsolenKampfspiel
                     }
                 case WearingStyle.other:
                     this.others.Add(newEquipment);
-                    this.equipmentBoni += newEquipment.boni;
+                    this.equipmentBoni += newEquipment.Boni;
                     return true;
                 case WearingStyle.hands:
                     HandEquipment handEquipment = newEquipment as HandEquipment;
                     if (handEquipment != null) {
-                        if (this.numberOfHands - handsInUse - handEquipment.hands >= 0) 
+                        if (this.numberOfHands - handsInUse - handEquipment.Hands >= 0) 
                         {
                             this.hands.Add(handEquipment);
-                            this.equipmentBoni += handEquipment.boni;
-                            this.handsInUse += handEquipment.hands;
+                            this.equipmentBoni += handEquipment.Boni;
+                            this.handsInUse += handEquipment.Hands;
                             return true;
                         }
                         else

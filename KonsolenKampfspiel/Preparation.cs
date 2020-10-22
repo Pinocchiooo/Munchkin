@@ -13,7 +13,7 @@ namespace KonsolenKampfspiel
         }
 
         static public void NewGame() {
-            List<Card> doorCards = Card.readDoorCards();
+            List<Card> doorCards = Card.ReadDoorCards();
             List<Card> treasureCards = Card.ReadTreasureCards();
             Card.Shuffle(treasureCards);
             Card.Shuffle(doorCards);
